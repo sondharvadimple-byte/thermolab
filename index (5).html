@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Test a useful-work claim against the laws of thermodynamics with the CL 202 Python engine.">
+  <title>ThermoLab | Feasibility Workbench</title>
+  <link rel="stylesheet" href="style.css?v=visuals1">
+  <script defer src="app.js?v=github-pages-visuals1"></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#workbench" aria-label="ThermoLab home"><span class="mark">◈</span>Thermo<span>Lab</span></a>
+    <nav aria-label="Main navigation"><a href="#workbench" id="nav-workbench">Workbench</a><a href="#examples" id="nav-examples">Examples</a><a href="#models" id="nav-models">Models</a><a href="#method" id="nav-method">Method</a></nav>
+    <div class="top-tools"><span class="course">CL 202</span><button class="themebtn" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">Dark</button></div>
+  </header>
+  <main>
+    <div id="home" class="view">
+      <section class="hero" aria-labelledby="title">
+        <div class="hero-copy"><p class="eyebrow"><span></span> CHEMICAL ENGINEERING THERMODYNAMICS</p>
+          <h1 id="title">Could it <em>work?</em></h1>
+          <p>Describe an energy-conversion claim. ThermoLab finds its thermodynamic ceiling, checks the First and Second Laws, and gives a verdict.</p>
+          <div class="hero-actions"><a class="hero-link" href="#workbench">Open the workbench <span aria-hidden="true">↘</span></a><a class="hero-link" href="#examples">Try an example</a></div>
+        </div>
+        <figure class="hero-figure" aria-label="Concept diagram showing an ideal upper power limit above a claimed output">
+        <svg viewBox="0 0 420 200" role="img" aria-label="Illustrative power limit chart">
+          <defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#94acc1" stroke-opacity=".20"/></pattern>
+          <linearGradient id="area" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#ffad76" stop-opacity=".32"/><stop offset="1" stop-color="#ffad76" stop-opacity="0"/></linearGradient></defs>
+          <rect x="25" y="16" width="360" height="147" fill="url(#grid)"/><path d="M25 16v147h360" fill="none" stroke="#7491a9"/>
+          <path d="M25 146C86 138 102 103 157 95S230 72 278 52 340 40 385 27V163H25Z" fill="url(#area)"/>
+          <path d="M25 146C86 138 102 103 157 95S230 72 278 52 340 40 385 27" fill="none" stroke="#ffad76" stroke-width="3"/>
+          <path d="M25 139h360" fill="none" stroke="#bbcee0" stroke-dasharray="5 6"/>
+          <circle cx="278" cy="52" r="5" fill="#ffad76"/><text x="233" y="27" fill="#ffc6a1">IDEAL LIMIT</text><text x="269" y="129" fill="#c8d9e9">CLAIMED OUTPUT</text>
+          <text x="25" y="187" fill="#b4c9db">ILLUSTRATIVE RESOURCE CURVE</text>
+        </svg>
+      </figure>
+      </section>
+
+      <section id="workbench" class="section" aria-labelledby="work-title">
+        <div class="section-intro row"><div><p class="eyebrow">01 / ANALYZE</p><h2 id="work-title">Feasibility workbench</h2><p>Start with a description or enter the quantities for a known model.</p></div>
+          <div class="action-links"><button class="tool" id="open-library" type="button">Browse examples</button><button class="tool surprise" id="surprise" type="button">✦ Surprise me</button></div></div>
+        <div class="work-grid">
+        <div class="panel input-panel">
+          <div class="modes" aria-label="Input method"><button type="button" id="text-tab" aria-pressed="true">Describe a scenario</button><button type="button" id="model-tab" aria-pressed="false">Enter model inputs</button></div>
+          <form id="text-form">
+            <label for="scenario">What are you testing?</label>
+            <textarea id="scenario" rows="6" maxlength="3000" required placeholder="e.g. An inventor claims his engine takes 100 kW of heat from a source at 600 K, rejects heat to surroundings at 300 K and produces 60 kW of work."></textarea>
+            <div class="form-note" id="provider-note">Write the problem the way it appears in a textbook. The tester extracts the numbers, identifies the source and sink, chooses the model, and gives a verdict. Every extracted value and assumption is shown with the result.</div>
+            <div class="actions"><button class="primary" id="analyze-button" type="submit" disabled>Analyze scenario <span aria-hidden="true">→</span></button><button class="quiet" id="reset" type="button">Clear</button></div>
+            <p class="form-note" id="interface-loading">Starting the interface… If this message stays, open the site through the local Python server.</p>
+          </form>
+          <form id="model-form" hidden>
+            <label for="model">Thermodynamic model</label><select id="model"></select>
+            <div id="fields" class="fields"></div>
+            <p class="form-note" id="model-note"></p>
+            <button class="primary" type="submit">Calculate result <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
+        <div class="panel result-panel" id="result-panel" aria-labelledby="result-title">
+          <div class="result-head"><p class="eyebrow" id="result-title">ANALYSIS OUTPUT</p><span id="status" class="badge" role="status">Ready</span></div>
+          <div id="result"><div class="empty"><span class="empty-icon" aria-hidden="true">◎</span><h3>Your results appear here</h3><p>Run a scenario to compare claimed output with the ideal limit and see which checks apply.</p></div></div>
+
+        </div>
+      </div>
+      </section>
+
+      <section id="examples" class="section" aria-labelledby="examples-title">
+        <div class="section-intro row"><div><p class="eyebrow">02 / EXPERIMENT</p><h2 id="examples-title">Try a worked example</h2><p>One representative example for each model. “Try example” fills the workbench; edit any value, then calculate.</p></div>
+          <button class="text-link as-link" id="all-examples" type="button">Browse all examples →</button></div>
+        <div id="model-examples" class="model-examples"></div>
+      </section>
+
+      <section id="models" class="section" aria-labelledby="models-title">
+        <div class="section-intro"><p class="eyebrow">03 / MODELS</p><h2 id="models-title">Which model checks which technology?</h2><p>The website and the terminal program use the same Python engine and the same model numbers. Describe a problem and the analyzer chooses the model (and says why), or pick a model and enter its values.</p></div>
+        <div class="model-map-wrap"><table class="model-map" id="models-table"></table></div>
+        <p class="model-map-note">Two helpers sit behind these models and are not selectable: the <strong>property calculator</strong> (Δh, Δs, T<sub>eff</sub>, latent heat — also answers “calculate the enthalpy change” questions without a verdict) and the <strong>model-required fallback</strong>, which answers MODEL REQUIRED for processes with no validated model here (transient conduction, tidal energy) instead of forcing an unrelated model.</p>
+      </section>
+
+      <section id="method" class="section method-section" aria-labelledby="method-title">
+        <div class="section-intro"><p class="eyebrow">04 / UNDERSTAND</p><h2 id="method-title">How the tester decides</h2><p>Every verdict comes from deterministic Python calculations. Nothing is guessed: missing values are calculated only when the equations fix them, and every assumption is shown.</p></div>
+        <div class="method-stages">
+        <article><span>01</span><h3>Read and map the scenario</h3>
+          <p>The analyzer finds every number with its unit and converts it before any calculation (°C → K, W → kW, g/s → kg/s, L/s → m³/s). It reads the surrounding words to give each quantity a role — heat received, heat rejected, work produced or consumed, stream inlet or outlet, reservoir temperature.</p>
+          <p>From the technology and these roles it chooses the model: a heat engine between fixed temperatures is not a heat exchanger, a refrigerator consumes work, a finite stream is not a fixed-temperature reservoir. The result states which model was chosen and why.</p></article>
+        <article><span>02</span><h3>Calculate the thermodynamic limit</h3>
+          <p>The engine applies the selected model: the First Law (energy balance) and the Second Law (S<sub>gen</sub> ≥ 0). Values that the balances fix uniquely are calculated — a stream outlet, rejected heat, the third of Q<sub>C</sub>, Q<sub>H</sub> and W.</p>
+          <p>It then compares the claim with the model’s reversible ceiling: Carnot efficiency or Carnot COP, the finite-stream limit with S<sub>gen</sub> = 0, the Betz limit, ρgQH, the Petela–Landsberg radiation limit or −ΔG × rate.</p></article>
+        <article><span>03</span><h3>Interpret the feasibility verdict</h3>
+          <ul class="verdict-list">
+            <li><b class="pill pass">FEASIBLE</b> The balances close and the claim is within the reversible limit.</li>
+            <li><b class="pill fail">NOT FEASIBLE</b> A balance fails, S<sub>gen</sub> &lt; 0, a temperature cross, or the limit is exceeded.</li>
+            <li><b class="pill wait">INSUFFICIENT DATA</b> A required value is missing; the report names it.</li>
+            <li><b class="pill na">MODEL REQUIRED</b> No validated model exists here for this process.</li>
+          </ul>
+          <p>Feasible means thermodynamically allowed — not efficient, economic or practical.</p></article>
+      </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="library" class="library" hidden role="dialog" aria-modal="true" aria-labelledby="library-title">
+    <div class="library-backdrop" id="library-backdrop"></div>
+    <div class="library-panel">
+      <div class="library-head"><div><p class="eyebrow">EXAMPLE LIBRARY</p><h2 id="library-title">Worked examples</h2><p>Pick an example: it loads into the workbench with the right model and runs.</p></div>
+        <button class="close" id="library-close" type="button" aria-label="Close the example library">×</button></div>
+      <div class="filters" id="library-filters" role="group" aria-label="Filter by technology"></div>
+      <div id="example-list" class="example-groups"></div>
+    </div>
+  </div>
+
+  <footer><span class="brand"><span class="mark">◈</span>Thermo<span>Lab</span></span><span>CL 202 · Thermodynamic Feasibility Tester</span><nav aria-label="Footer navigation"><a href="#models">Models</a><a href="#method">Method</a><a href="#examples">Examples</a></nav></footer>
+</body>
+</html>

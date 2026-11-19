@@ -1,0 +1,1556 @@
+{
+ "examples": [
+  {
+   "model": 1,
+   "title": "Normal feasible heat engine",
+   "note": "40 kW from 100 kW between 600 K and 300 K.",
+   "form": "fixed_reservoir_engine",
+   "values": {
+    "T_hot_K": 600,
+    "T_cold_K": 300,
+    "Q_hot_kw": 100,
+    "W_out_kw": 40
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "fixed_reservoir_engine",
+     "T_hot_K": 600,
+     "T_cold_K": 300,
+     "Q_hot_kw": 100,
+     "W_out_kw": 40
+    }
+   },
+   "shown": [
+    "Hot temperature (K): 600",
+    "Cold temperature (K): 300",
+    "Heat supplied (kW): 100",
+    "Claimed power (kW): 40"
+   ]
+  },
+  {
+   "model": 1,
+   "title": "Carnot-limit case",
+   "note": "Exactly the Carnot work: S_gen = 0.",
+   "form": "fixed_reservoir_engine",
+   "values": {
+    "T_hot_K": 600,
+    "T_cold_K": 300,
+    "Q_hot_kw": 100,
+    "W_out_kw": 50
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "fixed_reservoir_engine",
+     "T_hot_K": 600,
+     "T_cold_K": 300,
+     "Q_hot_kw": 100,
+     "W_out_kw": 50
+    }
+   },
+   "shown": [
+    "Hot temperature (K): 600",
+    "Cold temperature (K): 300",
+    "Heat supplied (kW): 100",
+    "Claimed power (kW): 50"
+   ]
+  },
+  {
+   "model": 1,
+   "title": "Carnot violation",
+   "featured": true,
+   "note": "60 % claimed against a 50 % Carnot limit.",
+   "form": "fixed_reservoir_engine",
+   "values": {
+    "T_hot_K": 600,
+    "T_cold_K": 300,
+    "Q_hot_kw": 100,
+    "W_out_kw": 60
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "fixed_reservoir_engine",
+     "T_hot_K": 600,
+     "T_cold_K": 300,
+     "Q_hot_kw": 100,
+     "W_out_kw": 60
+    }
+   },
+   "shown": [
+    "Hot temperature (K): 600",
+    "Cold temperature (K): 300",
+    "Heat supplied (kW): 100",
+    "Claimed power (kW): 60"
+   ]
+  },
+  {
+   "model": 1,
+   "title": "Missing-temperature case",
+   "note": "No reservoir temperatures: the tester asks for them.",
+   "text": "A heat engine receives 100 kW of heat and produces 40 kW of work. Determine feasibility.",
+   "expect": "needs_values",
+   "request": {
+    "scenario": "A heat engine receives 100 kW of heat and produces 40 kW of work. Determine feasibility."
+   },
+   "shown": null
+  },
+  {
+   "model": 2,
+   "title": "Normal heat recovery",
+   "note": "10 kW claimed; the cold outlet is calculated.",
+   "form": "finite_stream_engine",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 363.15,
+     "T_out_K": 333.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 293.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "W_out_kw": 10
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_engine",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 363.15,
+      "T_out_K": 333.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 293.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "W_out_kw": 10,
+     "apply_effective_temperature_limit": false,
+     "apply_strict_reversible_limit": true
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 1",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C): 60",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 1",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream heat capacity (kJ/kg K): 4.18",
+    "Claimed power output (kW, optional — blank gives the limit only): 10"
+   ]
+  },
+  {
+   "model": 2,
+   "title": "Excessive work claim",
+   "featured": true,
+   "note": "150 kW claimed from 125.4 kW of heat.",
+   "form": "finite_stream_engine",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 363.15,
+     "T_out_K": 333.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 293.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "W_out_kw": 150
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_engine",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 363.15,
+      "T_out_K": 333.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 293.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "W_out_kw": 150,
+     "apply_effective_temperature_limit": false,
+     "apply_strict_reversible_limit": true
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 1",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C): 60",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 1",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream heat capacity (kJ/kg K): 4.18",
+    "Claimed power output (kW, optional — blank gives the limit only): 150"
+   ]
+  },
+  {
+   "model": 2,
+   "title": "Reversible limit",
+   "note": "No claim: the maximum reversible work W_max.",
+   "form": "finite_stream_engine",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 363.15,
+     "T_out_K": 333.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 293.15,
+     "cp_kj_kg_k": 4.18
+    }
+   },
+   "expect": "LIMIT CALCULATED",
+   "request": {
+    "case": {
+     "model": "finite_stream_engine",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 363.15,
+      "T_out_K": 333.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 293.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "apply_effective_temperature_limit": false,
+     "apply_strict_reversible_limit": true
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 1",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C): 60",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 1",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream heat capacity (kJ/kg K): 4.18"
+   ]
+  },
+  {
+   "model": 2,
+   "title": "Exhaust-gas engine (described in words)",
+   "note": "Exhaust gas 500 → 150 °C, cooling water at 20 °C, 300 kW claimed.",
+   "text": "Exhaust gas at 2 kg/s enters at 500 °C and leaves at 150 °C, cp = 1.1 kJ/kg K. Cooling water at 5 kg/s enters at 20 °C. The engine claims 300 kW.",
+   "expect": "FEASIBLE",
+   "request": {
+    "scenario": "Exhaust gas at 2 kg/s enters at 500 °C and leaves at 150 °C, cp = 1.1 kJ/kg K. Cooling water at 5 kg/s enters at 20 °C. The engine claims 300 kW."
+   },
+   "shown": null
+  },
+  {
+   "model": 3,
+   "title": "Steam turbine",
+   "featured": true,
+   "note": "h and s from tables; S_gen = 0.6 kW/K.",
+   "form": "steady_control_volume",
+   "values": {
+    "cv_m": 2,
+    "cv_h_in": 3200,
+    "cv_s_in": 6.8,
+    "cv_h_out": 2600,
+    "cv_s_out": 7.1,
+    "W_out_kw": 1200
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "steady_control_volume",
+     "inlets": [
+      {
+       "mass_flow_kg_s": 2,
+       "specific_enthalpy_kj_kg": 3200,
+       "specific_entropy_kj_kg_k": 6.8
+      }
+     ],
+     "outlets": [
+      {
+       "mass_flow_kg_s": 2,
+       "specific_enthalpy_kj_kg": 2600,
+       "specific_entropy_kj_kg_k": 7.1
+      }
+     ],
+     "heat": [],
+     "W_out_kw": 1200
+    }
+   },
+   "shown": [
+    "Mass flow rate (kg/s): 2",
+    "Inlet enthalpy h₁ (kJ/kg): 3200",
+    "Inlet entropy s₁ (kJ/kg K, optional): 6.8",
+    "Outlet enthalpy h₂ (kJ/kg): 2600",
+    "Outlet entropy s₂ (kJ/kg K, optional): 7.1",
+    "Shaft work out (kW; negative for a compressor or pump; blank = from First Law): 1200"
+   ]
+  },
+  {
+   "model": 3,
+   "title": "Compressor",
+   "featured": true,
+   "note": "80 kW consumed (W_out = −80 kW).",
+   "form": "steady_control_volume",
+   "values": {
+    "cv_m": 1,
+    "cv_h_in": 300,
+    "cv_s_in": 6.5,
+    "cv_h_out": 380,
+    "cv_s_out": 6.7,
+    "W_out_kw": -80
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "steady_control_volume",
+     "inlets": [
+      {
+       "mass_flow_kg_s": 1,
+       "specific_enthalpy_kj_kg": 300,
+       "specific_entropy_kj_kg_k": 6.5
+      }
+     ],
+     "outlets": [
+      {
+       "mass_flow_kg_s": 1,
+       "specific_enthalpy_kj_kg": 380,
+       "specific_entropy_kj_kg_k": 6.7
+      }
+     ],
+     "heat": [],
+     "W_out_kw": -80
+    }
+   },
+   "shown": [
+    "Mass flow rate (kg/s): 1",
+    "Inlet enthalpy h₁ (kJ/kg): 300",
+    "Inlet entropy s₁ (kJ/kg K, optional): 6.5",
+    "Outlet enthalpy h₂ (kJ/kg): 380",
+    "Outlet entropy s₂ (kJ/kg K, optional): 6.7",
+    "Shaft work out (kW; negative for a compressor or pump; blank = from First Law): -80"
+   ]
+  },
+  {
+   "model": 3,
+   "title": "Energy imbalance",
+   "note": "1500 kW claimed from a 1200 kW enthalpy drop.",
+   "form": "steady_control_volume",
+   "values": {
+    "cv_m": 2,
+    "cv_h_in": 3200,
+    "cv_h_out": 2600,
+    "W_out_kw": 1500
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "steady_control_volume",
+     "inlets": [
+      {
+       "mass_flow_kg_s": 2,
+       "specific_enthalpy_kj_kg": 3200
+      }
+     ],
+     "outlets": [
+      {
+       "mass_flow_kg_s": 2,
+       "specific_enthalpy_kj_kg": 2600
+      }
+     ],
+     "heat": [],
+     "W_out_kw": 1500
+    }
+   },
+   "shown": [
+    "Mass flow rate (kg/s): 2",
+    "Inlet enthalpy h₁ (kJ/kg): 3200",
+    "Outlet enthalpy h₂ (kJ/kg): 2600",
+    "Shaft work out (kW; negative for a compressor or pump; blank = from First Law): 1500"
+   ]
+  },
+  {
+   "model": 3,
+   "title": "Missing outlet state",
+   "note": "Only the inlet enthalpy is known.",
+   "text": "Steam enters a turbine at 2 kg/s with inlet enthalpy 3200 kJ/kg. The turbine produces 1000 kW work. Determine feasibility.",
+   "expect": "needs_values",
+   "request": {
+    "scenario": "Steam enters a turbine at 2 kg/s with inlet enthalpy 3200 kJ/kg. The turbine produces 1000 kW work. Determine feasibility."
+   },
+   "shown": null
+  },
+  {
+   "model": 4,
+   "title": "Complete cycle",
+   "featured": true,
+   "note": "500 kJ in at 600 K, 300 kJ out at 300 K, 200 kJ work.",
+   "form": "closed_system",
+   "values": {
+    "cs_q": 500,
+    "cs_tb": 600,
+    "cs_q2": -300,
+    "cs_tb2": 300,
+    "W_out_kj": 200,
+    "delta_E_kj": 0,
+    "delta_S_system_kj_K": 0
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "closed_system",
+     "heat": [
+      {
+       "heat_into_system_kj": 500,
+       "boundary_temperature_K": 600
+      },
+      {
+       "heat_into_system_kj": -300,
+       "boundary_temperature_K": 300
+      }
+     ],
+     "W_out_kj": 200,
+     "delta_E_kj": 0,
+     "delta_S_system_kj_K": 0
+    }
+   },
+   "shown": [
+    "Heat into the system, Q₁ (kJ; negative = heat out): 500",
+    "Boundary temperature of Q₁ (K, optional): 600",
+    "Second heat interaction Q₂ (kJ, optional): -300",
+    "Boundary temperature of Q₂ (K, optional): 300",
+    "Work done by the system (kJ, optional if ΔE is given): 200",
+    "Change in system energy ΔE (kJ, optional if W is given; 0 for a cycle): 0",
+    "Change in system entropy ΔS (kJ/K, optional; 0 for a cycle): 0"
+   ]
+  },
+  {
+   "model": 4,
+   "title": "Piston-cylinder",
+   "featured": true,
+   "note": "15 kJ heat at 300 K, ΔU = 10 kJ, ΔS = 0.06 kJ/K.",
+   "form": "closed_system",
+   "values": {
+    "cs_q": 15,
+    "cs_tb": 300,
+    "W_out_kj": 5,
+    "delta_E_kj": 10,
+    "delta_S_system_kj_K": 0.06
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "closed_system",
+     "heat": [
+      {
+       "heat_into_system_kj": 15,
+       "boundary_temperature_K": 300
+      }
+     ],
+     "W_out_kj": 5,
+     "delta_E_kj": 10,
+     "delta_S_system_kj_K": 0.06
+    }
+   },
+   "shown": [
+    "Heat into the system, Q₁ (kJ; negative = heat out): 15",
+    "Boundary temperature of Q₁ (K, optional): 300",
+    "Work done by the system (kJ, optional if ΔE is given): 5",
+    "Change in system energy ΔE (kJ, optional if W is given; 0 for a cycle): 10",
+    "Change in system entropy ΔS (kJ/K, optional; 0 for a cycle): 0.06"
+   ]
+  },
+  {
+   "model": 4,
+   "title": "First Law violation",
+   "note": "Q − W = 200 kJ but ΔE = 100 kJ; ΔS is not needed for this check.",
+   "form": "closed_system",
+   "values": {
+    "cs_q": 500,
+    "W_out_kj": 300,
+    "delta_E_kj": 100
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "closed_system",
+     "heat": [
+      {
+       "heat_into_system_kj": 500
+      }
+     ],
+     "W_out_kj": 300,
+     "delta_E_kj": 100
+    }
+   },
+   "shown": [
+    "Heat into the system, Q₁ (kJ; negative = heat out): 500",
+    "Work done by the system (kJ, optional if ΔE is given): 300",
+    "Change in system energy ΔE (kJ, optional if W is given; 0 for a cycle): 100"
+   ]
+  },
+  {
+   "model": 4,
+   "title": "Second Law violation",
+   "note": "Heat taken at 300 K, rejected at 600 K.",
+   "form": "closed_system",
+   "values": {
+    "cs_q": 500,
+    "cs_tb": 300,
+    "cs_q2": -300,
+    "cs_tb2": 600,
+    "W_out_kj": 200,
+    "delta_E_kj": 0,
+    "delta_S_system_kj_K": 0
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "closed_system",
+     "heat": [
+      {
+       "heat_into_system_kj": 500,
+       "boundary_temperature_K": 300
+      },
+      {
+       "heat_into_system_kj": -300,
+       "boundary_temperature_K": 600
+      }
+     ],
+     "W_out_kj": 200,
+     "delta_E_kj": 0,
+     "delta_S_system_kj_K": 0
+    }
+   },
+   "shown": [
+    "Heat into the system, Q₁ (kJ; negative = heat out): 500",
+    "Boundary temperature of Q₁ (K, optional): 300",
+    "Second heat interaction Q₂ (kJ, optional): -300",
+    "Boundary temperature of Q₂ (K, optional): 600",
+    "Work done by the system (kJ, optional if ΔE is given): 200",
+    "Change in system energy ΔE (kJ, optional if W is given; 0 for a cycle): 0",
+    "Change in system entropy ΔS (kJ/K, optional; 0 for a cycle): 0"
+   ]
+  },
+  {
+   "model": 5,
+   "title": "Normal refrigerator",
+   "featured": true,
+   "note": "Freezer at −18 °C: COP 3 vs Carnot 5.9.",
+   "form": "refrigeration_cycle",
+   "values": {
+    "mode": "refrigerator",
+    "energy_unit": "kW",
+    "T_cold_K": 255.14999999999998,
+    "T_hot_K": 298.15,
+    "Q_cold": 0.3,
+    "W_in": 0.1
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "refrigeration_cycle",
+     "mode": "refrigerator",
+     "energy_unit": "kW",
+     "T_cold_K": 255.14999999999998,
+     "T_hot_K": 298.15,
+     "Q_cold": 0.3,
+     "W_in": 0.1
+    }
+   },
+   "shown": [
+    "Device: refrigerator",
+    "Energy basis: kW",
+    "Cold-side temperature (°C): -18",
+    "Hot-side temperature (°C): 25",
+    "Heat removed from the cold side Q_C (kW or kJ): 0.3",
+    "Work / electricity input W_in (kW or kJ): 0.1"
+   ]
+  },
+  {
+   "model": 5,
+   "title": "Refrigerator exceeding Carnot COP",
+   "note": "COP 10 claimed; Carnot allows 5.9.",
+   "form": "refrigeration_cycle",
+   "values": {
+    "mode": "refrigerator",
+    "energy_unit": "kW",
+    "T_cold_K": 255.14999999999998,
+    "T_hot_K": 298.15,
+    "Q_cold": 0.3,
+    "W_in": 0.03
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "refrigeration_cycle",
+     "mode": "refrigerator",
+     "energy_unit": "kW",
+     "T_cold_K": 255.14999999999998,
+     "T_hot_K": 298.15,
+     "Q_cold": 0.3,
+     "W_in": 0.03
+    }
+   },
+   "shown": [
+    "Device: refrigerator",
+    "Energy basis: kW",
+    "Cold-side temperature (°C): -18",
+    "Hot-side temperature (°C): 25",
+    "Heat removed from the cold side Q_C (kW or kJ): 0.3",
+    "Work / electricity input W_in (kW or kJ): 0.03"
+   ]
+  },
+  {
+   "model": 5,
+   "title": "Normal heat pump",
+   "note": "10 kW to a 35 °C circuit from 0 °C air, COP 4.",
+   "form": "refrigeration_cycle",
+   "values": {
+    "mode": "heat_pump",
+    "energy_unit": "kW",
+    "T_cold_K": 273.15,
+    "T_hot_K": 308.15,
+    "Q_hot": 10,
+    "W_in": 2.5
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "refrigeration_cycle",
+     "mode": "heat_pump",
+     "energy_unit": "kW",
+     "T_cold_K": 273.15,
+     "T_hot_K": 308.15,
+     "Q_hot": 10,
+     "W_in": 2.5
+    }
+   },
+   "shown": [
+    "Device: heat_pump",
+    "Energy basis: kW",
+    "Cold-side temperature (°C): 0",
+    "Hot-side temperature (°C): 35",
+    "Heat delivered to the hot side Q_H (kW or kJ): 10",
+    "Work / electricity input W_in (kW or kJ): 2.5"
+   ]
+  },
+  {
+   "model": 5,
+   "title": "Heat pump exceeding Carnot COP",
+   "featured": true,
+   "note": "COP 10 claimed; Carnot allows 8.8.",
+   "form": "refrigeration_cycle",
+   "values": {
+    "mode": "heat_pump",
+    "energy_unit": "kW",
+    "T_cold_K": 273.15,
+    "T_hot_K": 308.15,
+    "Q_hot": 10,
+    "W_in": 1
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "refrigeration_cycle",
+     "mode": "heat_pump",
+     "energy_unit": "kW",
+     "T_cold_K": 273.15,
+     "T_hot_K": 308.15,
+     "Q_hot": 10,
+     "W_in": 1
+    }
+   },
+   "shown": [
+    "Device: heat_pump",
+    "Energy basis: kW",
+    "Cold-side temperature (°C): 0",
+    "Hot-side temperature (°C): 35",
+    "Heat delivered to the hot side Q_H (kW or kJ): 10",
+    "Work / electricity input W_in (kW or kJ): 1"
+   ]
+  },
+  {
+   "model": 5,
+   "title": "Missing work input",
+   "note": "Only the cooling load is known.",
+   "form": "refrigeration_cycle",
+   "values": {
+    "mode": "refrigerator",
+    "energy_unit": "kW",
+    "T_cold_K": 255.14999999999998,
+    "T_hot_K": 298.15,
+    "Q_cold": 0.3
+   },
+   "expect": "INSUFFICIENT DATA",
+   "request": {
+    "case": {
+     "model": "refrigeration_cycle",
+     "mode": "refrigerator",
+     "energy_unit": "kW",
+     "T_cold_K": 255.14999999999998,
+     "T_hot_K": 298.15,
+     "Q_cold": 0.3
+    }
+   },
+   "shown": [
+    "Device: refrigerator",
+    "Energy basis: kW",
+    "Cold-side temperature (°C): -18",
+    "Hot-side temperature (°C): 25",
+    "Heat removed from the cold side Q_C (kW or kJ): 0.3"
+   ]
+  },
+  {
+   "model": 6,
+   "title": "Balanced water–water exchanger",
+   "featured": true,
+   "note": "62.7 kW each side; S_gen > 0.",
+   "form": "finite_stream_heat_recovery",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 0.5,
+     "T_in_K": 363.15,
+     "T_out_K": 333.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 293.15,
+     "T_out_K": 308.15,
+     "cp_kj_kg_k": 4.18
+    }
+   },
+   "expect": "SECOND-LAW ADMISSIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_heat_recovery",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 0.5,
+      "T_in_K": 363.15,
+      "T_out_K": 333.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 293.15,
+      "T_out_K": 308.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "energy_relative_tolerance": 0.001
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 0.5",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C, optional): 60",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 1",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream outlet (°C, optional): 35",
+    "Cold-stream heat capacity (kJ/kg K): 4.18"
+   ]
+  },
+  {
+   "model": 6,
+   "title": "Oil–water exchanger",
+   "note": "Oil loses 200 kW, water gains 188.1 kW.",
+   "form": "finite_stream_heat_recovery",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 2,
+     "T_in_K": 423.15,
+     "T_out_K": 373.15,
+     "cp_kj_kg_k": 2
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1.5,
+     "T_in_K": 298.15,
+     "T_out_K": 328.15,
+     "cp_kj_kg_k": 4.18
+    }
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_heat_recovery",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 2,
+      "T_in_K": 423.15,
+      "T_out_K": 373.15,
+      "cp_kj_kg_k": 2
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1.5,
+      "T_in_K": 298.15,
+      "T_out_K": 328.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "energy_relative_tolerance": 0.001
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 2",
+    "Hot-stream inlet (°C): 150",
+    "Hot-stream outlet (°C, optional): 100",
+    "Hot-stream heat capacity (kJ/kg K): 2",
+    "Cold-stream flow (kg/s): 1.5",
+    "Cold-stream inlet (°C): 25",
+    "Cold-stream outlet (°C, optional): 55",
+    "Cold-stream heat capacity (kJ/kg K): 4.18"
+   ]
+  },
+  {
+   "model": 6,
+   "title": "Temperature cross",
+   "featured": true,
+   "note": "Cold water leaves at 95 °C, above the 90 °C hot inlet.",
+   "form": "finite_stream_heat_recovery",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 363.15,
+     "T_out_K": 313.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 0.6666666666666666,
+     "T_in_K": 293.15,
+     "T_out_K": 368.15,
+     "cp_kj_kg_k": 4.18
+    }
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_heat_recovery",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 363.15,
+      "T_out_K": 313.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 0.666666666667,
+      "T_in_K": 293.15,
+      "T_out_K": 368.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "energy_relative_tolerance": 0.001
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 1",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C, optional): 40",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 0.666666666667",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream outlet (°C, optional): 95",
+    "Cold-stream heat capacity (kJ/kg K): 4.18"
+   ]
+  },
+  {
+   "model": 6,
+   "title": "Energy imbalance",
+   "note": "167.2 kW released but only 83.6 kW absorbed.",
+   "form": "finite_stream_heat_recovery",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 363.15,
+     "T_out_K": 323.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 293.15,
+     "T_out_K": 313.15,
+     "cp_kj_kg_k": 4.18
+    }
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_heat_recovery",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 363.15,
+      "T_out_K": 323.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 293.15,
+      "T_out_K": 313.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "energy_relative_tolerance": 0.001
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 1",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C, optional): 50",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 1",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream outlet (°C, optional): 40",
+    "Cold-stream heat capacity (kJ/kg K): 4.18"
+   ]
+  },
+  {
+   "model": 6,
+   "title": "Missing outlet temperature",
+   "note": "The cold outlet is calculated from the energy balance.",
+   "form": "finite_stream_heat_recovery",
+   "values": {
+    "hot_stream": {
+     "mass_flow_kg_s": 0.5,
+     "T_in_K": 363.15,
+     "T_out_K": 333.15,
+     "cp_kj_kg_k": 4.18
+    },
+    "cold_stream": {
+     "mass_flow_kg_s": 1,
+     "T_in_K": 293.15,
+     "cp_kj_kg_k": 4.18
+    }
+   },
+   "expect": "SECOND-LAW ADMISSIBLE",
+   "request": {
+    "case": {
+     "model": "finite_stream_heat_recovery",
+     "hot_stream": {
+      "name": "hot stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 0.5,
+      "T_in_K": 363.15,
+      "T_out_K": 333.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "cold_stream": {
+      "name": "cold stream",
+      "cp_model": "constant",
+      "mass_flow_kg_s": 1,
+      "T_in_K": 293.15,
+      "cp_kj_kg_k": 4.18
+     },
+     "energy_relative_tolerance": 0.001
+    }
+   },
+   "shown": [
+    "Hot-stream flow (kg/s): 0.5",
+    "Hot-stream inlet (°C): 90",
+    "Hot-stream outlet (°C, optional): 60",
+    "Hot-stream heat capacity (kJ/kg K): 4.18",
+    "Cold-stream flow (kg/s): 1",
+    "Cold-stream inlet (°C): 20",
+    "Cold-stream heat capacity (kJ/kg K): 4.18"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "Walking generator",
+   "featured": true,
+   "note": "4 J per step at 120 steps/min; 5 W claimed.",
+   "form": "mechanical_steps",
+   "values": {
+    "recoverable_energy_per_event_j": 4,
+    "events_per_s": 2,
+    "W_out_kw": 0.005
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "mechanical_power",
+     "recoverable_energy_per_event_j": 4,
+     "events_per_s": 2,
+     "W_out_kw": 0.005
+    }
+   },
+   "shown": [
+    "Energy recovered per step (J): 4",
+    "Walking rate (steps/min): 120",
+    "Claimed electrical output (W): 5"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "Walking — force × displacement",
+   "note": "700 N × 0.05 m × 2 steps/s = 70 W.",
+   "form": "mechanical_force",
+   "values": {
+    "force_N": 700,
+    "displacement_m": 0.05,
+    "events_per_s": 2,
+    "W_out_kw": 0.02
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "mechanical_power",
+     "force_N": 700,
+     "displacement_m": 0.05,
+     "events_per_s": 2,
+     "W_out_kw": 0.02
+    }
+   },
+   "shown": [
+    "Average force (N): 700",
+    "Displacement per step (m): 0.05",
+    "Steps per second: 2",
+    "Claimed electrical output (W): 20"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "Pedalling generator",
+   "note": "20 N·m at 10 rad/s = 200 W; 120 W claimed.",
+   "form": "mechanical_torque",
+   "values": {
+    "torque_Nm": 20,
+    "angular_velocity_rad_s": 10,
+    "W_out_kw": 0.12
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "mechanical_power",
+     "torque_Nm": 20,
+     "angular_velocity_rad_s": 10,
+     "W_out_kw": 0.12
+    }
+   },
+   "shown": [
+    "Torque (N·m): 20",
+    "Angular speed (rad/s): 10",
+    "Claimed electrical output (W): 120"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "Wind turbine",
+   "featured": true,
+   "note": "10 m², 8 m/s: Betz limit 1858 W.",
+   "form": "mechanical_wind",
+   "values": {
+    "air_density_kg_m3": 1.225,
+    "swept_area_m2": 10,
+    "wind_speed_m_s": 8,
+    "W_out_kw": 1.5
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "mechanical_power",
+     "air_density_kg_m3": 1.225,
+     "swept_area_m2": 10,
+     "wind_speed_m_s": 8,
+     "W_out_kw": 1.5
+    }
+   },
+   "shown": [
+    "Air density (kg/m³): 1.225",
+    "Rotor swept area (m²): 10",
+    "Wind speed (m/s): 8",
+    "Claimed electrical output (W): 1500"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "Hydro turbine",
+   "note": "0.02 m³/s through 10 m: 1962 W ideal.",
+   "form": "mechanical_hydro",
+   "values": {
+    "head_m": 10,
+    "volumetric_flow_m3_s": 0.02,
+    "water_density_kg_m3": 1000,
+    "g_m_s2": 9.81,
+    "W_out_kw": 1.5
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "mechanical_power",
+     "head_m": 10,
+     "volumetric_flow_m3_s": 0.02,
+     "water_density_kg_m3": 1000,
+     "g_m_s2": 9.81,
+     "W_out_kw": 1.5
+    }
+   },
+   "shown": [
+    "Head (m): 10",
+    "Water flow (m³/s): 0.02",
+    "Water density (kg/m³): 1000",
+    "g (m/s²): 9.81",
+    "Claimed electrical output (W): 1500"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "No-input claim",
+   "note": "500 W with no energy input at all.",
+   "form": "mechanical_power",
+   "values": {
+    "recoverable_mechanical_power_kw": 0,
+    "W_out_kw": 0.5
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "mechanical_power",
+     "recoverable_mechanical_power_kw": 0,
+     "W_out_kw": 0.5
+    }
+   },
+   "shown": [
+    "Mechanical power available (W): 0",
+    "Claimed electrical output (W): 500"
+   ]
+  },
+  {
+   "model": 7,
+   "title": "Large wind turbine (described in words)",
+   "note": "40 m rotor in 10 m/s wind claims 800 kW.",
+   "text": "A wind turbine with 40 m rotor diameter in 10 m/s wind claims 800 kW.",
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "scenario": "A wind turbine with 40 m rotor diameter in 10 m/s wind claims 800 kW."
+   },
+   "shown": null
+  },
+  {
+   "model": 8,
+   "title": "Normal solar panel",
+   "featured": true,
+   "note": "500 W from 2 m² at 1000 W/m².",
+   "form": "solar_blackbody",
+   "values": {
+    "T_source_K": 5778,
+    "T_ambient_K": 300,
+    "irradiance_W_m2": 1000,
+    "collection_area_m2": 2,
+    "W_out_kw": 0.5
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "solar_blackbody",
+     "T_source_K": 5778,
+     "T_ambient_K": 300,
+     "irradiance_W_m2": 1000,
+     "collection_area_m2": 2,
+     "W_out_kw": 0.5
+    }
+   },
+   "shown": [
+    "Source temperature (K): 5778",
+    "Ambient temperature (K): 300",
+    "Irradiance (W/m²): 1000",
+    "Collection area (m²): 2",
+    "Claimed power (kW): 0.5"
+   ]
+  },
+  {
+   "model": 8,
+   "title": "Output above the exergy limit",
+   "note": "1900 W claimed; limit ≈ 1862 W.",
+   "form": "solar_blackbody",
+   "values": {
+    "T_source_K": 5778,
+    "T_ambient_K": 300,
+    "irradiance_W_m2": 1000,
+    "collection_area_m2": 2,
+    "W_out_kw": 1.9
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "solar_blackbody",
+     "T_source_K": 5778,
+     "T_ambient_K": 300,
+     "irradiance_W_m2": 1000,
+     "collection_area_m2": 2,
+     "W_out_kw": 1.9
+    }
+   },
+   "shown": [
+    "Source temperature (K): 5778",
+    "Ambient temperature (K): 300",
+    "Irradiance (W/m²): 1000",
+    "Collection area (m²): 2",
+    "Claimed power (kW): 1.9"
+   ]
+  },
+  {
+   "model": 8,
+   "title": "Different collector area",
+   "note": "5 m² at 800 W/m², 1 kW claimed.",
+   "form": "solar_blackbody",
+   "values": {
+    "T_source_K": 5778,
+    "T_ambient_K": 300,
+    "irradiance_W_m2": 800,
+    "collection_area_m2": 5,
+    "W_out_kw": 1
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "solar_blackbody",
+     "T_source_K": 5778,
+     "T_ambient_K": 300,
+     "irradiance_W_m2": 800,
+     "collection_area_m2": 5,
+     "W_out_kw": 1
+    }
+   },
+   "shown": [
+    "Source temperature (K): 5778",
+    "Ambient temperature (K): 300",
+    "Irradiance (W/m²): 800",
+    "Collection area (m²): 5",
+    "Claimed power (kW): 1"
+   ]
+  },
+  {
+   "model": 8,
+   "title": "Zero irradiance",
+   "featured": true,
+   "note": "No sunlight but 100 W claimed.",
+   "form": "solar_blackbody",
+   "values": {
+    "T_source_K": 5778,
+    "T_ambient_K": 300,
+    "irradiance_W_m2": 0,
+    "collection_area_m2": 2,
+    "W_out_kw": 0.1
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "solar_blackbody",
+     "T_source_K": 5778,
+     "T_ambient_K": 300,
+     "irradiance_W_m2": 0,
+     "collection_area_m2": 2,
+     "W_out_kw": 0.1
+    }
+   },
+   "shown": [
+    "Source temperature (K): 5778",
+    "Ambient temperature (K): 300",
+    "Irradiance (W/m²): 0",
+    "Collection area (m²): 2",
+    "Claimed power (kW): 0.1"
+   ]
+  },
+  {
+   "model": 9,
+   "title": "Hydrogen fuel cell",
+   "featured": true,
+   "note": "0.01 mol/s: 2.37 kW limit, 2 kW claimed.",
+   "form": "reaction_gibbs",
+   "values": {
+    "reaction_direction": "H₂ + ½O₂ → H₂O(l)",
+    "delta_G_kj_per_mol_rxn": -237.141,
+    "reaction_rate_mol_rxn_s": 0.01,
+    "W_out_kw": 2
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "reaction_gibbs",
+     "reaction_direction": "H₂ + ½O₂ → H₂O(l)",
+     "delta_G_kj_per_mol_rxn": -237.141,
+     "reaction_rate_mol_rxn_s": 0.01,
+     "W_out_kw": 2
+    }
+   },
+   "shown": [
+    "Reaction direction: H₂ + ½O₂ → H₂O(l)",
+    "ΔG (kJ/mol reaction, signed): -237.141",
+    "Forward rate (mol/s): 0.01",
+    "Claimed power (kW): 2"
+   ]
+  },
+  {
+   "model": 9,
+   "title": "Methanol fuel cell (described in words)",
+   "note": "0.5 g/s of methanol, 8 kW claimed.",
+   "text": "A methanol fuel cell uses 0.5 g/s of methanol and delivers 8 kW.",
+   "expect": "FEASIBLE",
+   "request": {
+    "scenario": "A methanol fuel cell uses 0.5 g/s of methanol and delivers 8 kW."
+   },
+   "shown": null
+  },
+  {
+   "model": 9,
+   "title": "Methane fuel cell",
+   "note": "ΔG° = −817.9 kJ/mol, 0.002 mol/s: 1.64 kW limit.",
+   "form": "reaction_gibbs",
+   "values": {
+    "reaction_direction": "CH₄ + 2O₂ → CO₂ + 2H₂O(l)",
+    "delta_G_kj_per_mol_rxn": -817.9,
+    "reaction_rate_mol_rxn_s": 0.002,
+    "W_out_kw": 1.2
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "reaction_gibbs",
+     "reaction_direction": "CH₄ + 2O₂ → CO₂ + 2H₂O(l)",
+     "delta_G_kj_per_mol_rxn": -817.9,
+     "reaction_rate_mol_rxn_s": 0.002,
+     "W_out_kw": 1.2
+    }
+   },
+   "shown": [
+    "Reaction direction: CH₄ + 2O₂ → CO₂ + 2H₂O(l)",
+    "ΔG (kJ/mol reaction, signed): -817.9",
+    "Forward rate (mol/s): 0.002",
+    "Claimed power (kW): 1.2"
+   ]
+  },
+  {
+   "model": 9,
+   "title": "Methanol fuel cell",
+   "note": "ΔG° = −702.4 kJ/mol, 0.001 mol/s: 0.70 kW < 0.8 kW claimed.",
+   "form": "reaction_gibbs",
+   "values": {
+    "reaction_direction": "CH₃OH + 3/2O₂ → CO₂ + 2H₂O(l)",
+    "delta_G_kj_per_mol_rxn": -702.4,
+    "reaction_rate_mol_rxn_s": 0.001,
+    "W_out_kw": 0.8
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "reaction_gibbs",
+     "reaction_direction": "CH₃OH + 3/2O₂ → CO₂ + 2H₂O(l)",
+     "delta_G_kj_per_mol_rxn": -702.4,
+     "reaction_rate_mol_rxn_s": 0.001,
+     "W_out_kw": 0.8
+    }
+   },
+   "shown": [
+    "Reaction direction: CH₃OH + 3/2O₂ → CO₂ + 2H₂O(l)",
+    "ΔG (kJ/mol reaction, signed): -702.4",
+    "Forward rate (mol/s): 0.001",
+    "Claimed power (kW): 0.8"
+   ]
+  },
+  {
+   "model": 9,
+   "title": "Reversible limit",
+   "note": "Exactly −ΔG × rate is claimed.",
+   "form": "reaction_gibbs",
+   "values": {
+    "reaction_direction": "H₂ + ½O₂ → H₂O(l)",
+    "delta_G_kj_per_mol_rxn": -237.141,
+    "reaction_rate_mol_rxn_s": 0.01,
+    "W_out_kw": 2.37141
+   },
+   "expect": "FEASIBLE",
+   "request": {
+    "case": {
+     "model": "reaction_gibbs",
+     "reaction_direction": "H₂ + ½O₂ → H₂O(l)",
+     "delta_G_kj_per_mol_rxn": -237.141,
+     "reaction_rate_mol_rxn_s": 0.01,
+     "W_out_kw": 2.37141
+    }
+   },
+   "shown": [
+    "Reaction direction: H₂ + ½O₂ → H₂O(l)",
+    "ΔG (kJ/mol reaction, signed): -237.141",
+    "Forward rate (mol/s): 0.01",
+    "Claimed power (kW): 2.37141"
+   ]
+  },
+  {
+   "model": 9,
+   "title": "Gibbs-energy sign error",
+   "featured": true,
+   "note": "ΔG > 0: the reaction needs work, it cannot give 1 kW.",
+   "form": "reaction_gibbs",
+   "values": {
+    "reaction_direction": "H₂ + ½O₂ → H₂O(l)",
+    "delta_G_kj_per_mol_rxn": 237.141,
+    "reaction_rate_mol_rxn_s": 0.01,
+    "W_out_kw": 1
+   },
+   "expect": "NOT FEASIBLE",
+   "request": {
+    "case": {
+     "model": "reaction_gibbs",
+     "reaction_direction": "H₂ + ½O₂ → H₂O(l)",
+     "delta_G_kj_per_mol_rxn": 237.141,
+     "reaction_rate_mol_rxn_s": 0.01,
+     "W_out_kw": 1
+    }
+   },
+   "shown": [
+    "Reaction direction: H₂ + ½O₂ → H₂O(l)",
+    "ΔG (kJ/mol reaction, signed): 237.141",
+    "Forward rate (mol/s): 0.01",
+    "Claimed power (kW): 1"
+   ]
+  }
+ ],
+ "info": {
+  "1": {
+   "name": "Fixed-temperature reservoir engine",
+   "category": "heat-engines",
+   "form": "fixed_reservoir_engine",
+   "example": {
+    "title": "Normal feasible heat engine",
+    "label": "Carnot heat engine",
+    "description": "100 kW taken from a 600 K reservoir, heat rejected at 300 K, 40 kW claimed — checked against the 50 % Carnot limit."
+   },
+   "tech": "Inventor’s engines, Stirling and power-plant cycles with given source and sink temperatures",
+   "checks": "η ≤ 1 − T_C/T_H · Q_H = W + Q_C · S_gen = Q_C/T_C − Q_H/T_H ≥ 0"
+  },
+  "2": {
+   "name": "Finite hot + cold streams (work produced)",
+   "category": "heat-engines",
+   "form": "finite_stream_engine",
+   "example": {
+    "title": "Normal heat recovery",
+    "label": "Waste-heat recovery",
+    "description": "Hot water cooling from 90 to 60 °C drives an engine that rejects heat to cold water at 20 °C; 10 kW claimed."
+   },
+   "tech": "Waste-heat engines, exhaust-gas recovery, data-centre waste heat",
+   "checks": "W ≤ W_max = Q̇_hot − Q̇_cold,rev (cold outlet where S_gen = 0) · First Law"
+  },
+  "3": {
+   "name": "Steady control volume",
+   "category": "turbines",
+   "form": "steady_control_volume",
+   "example": {
+    "title": "Steam turbine",
+    "label": "Steam turbine",
+    "description": "2 kg/s of steam from h = 3200 to 2600 kJ/kg with entropies from tables; 1200 kW of shaft work."
+   },
+   "tech": "Steam and gas turbines, compressors, pumps, nozzles",
+   "checks": "Σṁ_in = Σṁ_out · Q̇ − Ẇ = Σṁh_out − Σṁh_in · S_gen = Σṁs_out − Σṁs_in − ΣQ̇/T ≥ 0"
+  },
+  "4": {
+   "name": "Closed system",
+   "category": "closed",
+   "form": "closed_system",
+   "example": {
+    "title": "Piston-cylinder",
+    "label": "Piston-cylinder",
+    "description": "Gas receives 15 kJ of heat at 300 K, its energy rises 10 kJ and its entropy 0.06 kJ/K; 5 kJ of work."
+   },
+   "tech": "Piston-cylinder devices, sealed tanks, complete cycles",
+   "checks": "Q − W = ΔE · S_gen = ΔS − ΣQ/T ≥ 0 (Clausius for a cycle)"
+  },
+  "5": {
+   "name": "Refrigerator / heat pump",
+   "category": "refrigeration",
+   "form": "refrigeration_cycle",
+   "example": {
+    "title": "Normal refrigerator",
+    "label": "Refrigerator",
+    "description": "A freezer at −18 °C in a 25 °C kitchen removes 0.3 kW using 0.1 kW of electricity."
+   },
+   "tech": "Refrigerators, freezers, air conditioners, heat pumps",
+   "checks": "Q_H = Q_C + W_in · COP ≤ T_C/(T_H − T_C) or T_H/(T_H − T_C) · S_gen ≥ 0"
+  },
+  "6": {
+   "name": "Heat exchanger (no shaft work)",
+   "category": "exchangers",
+   "form": "finite_stream_heat_recovery",
+   "example": {
+    "title": "Balanced water–water exchanger",
+    "label": "Water–water heat exchanger",
+    "description": "Hot water 0.5 kg/s cools 90 → 60 °C while cold water 1 kg/s warms 20 → 35 °C; no shaft work."
+   },
+   "tech": "Water–water and oil–water exchangers, data-centre heat recovery",
+   "checks": "W = 0 · Q̇_released = Q̇_absorbed (+ loss) · S_gen ≥ 0 · no temperature cross"
+  },
+  "7": {
+   "name": "Mechanical energy harvesting",
+   "category": "mechanical",
+   "form": "mechanical_power",
+   "example": {
+    "title": "Wind turbine",
+    "label": "Wind turbine",
+    "description": "A 10 m² rotor in 8 m/s wind (ρ = 1.225 kg/m³) claims 1.5 kW — checked against the Betz limit."
+   },
+   "tech": "Walking and pedalling generators, wind turbines, hydro turbines, no-input claims",
+   "checks": "Output ≤ mechanical input (F·d, τω) · Betz (16/27)·½ρAv³ · ρgQH"
+  },
+  "8": {
+   "name": "Solar radiation conversion",
+   "category": "solar",
+   "form": "solar_blackbody",
+   "example": {
+    "title": "Normal solar panel",
+    "label": "Solar panel",
+    "description": "2 m² under 1000 W/m² of sunlight claims 500 W — checked against the Petela–Landsberg limit."
+   },
+   "tech": "Solar panels and radiation converters",
+   "checks": "Output ≤ [1 − (4/3)(T₀/T_s) + (1/3)(T₀/T_s)⁴]·G·A (Petela–Landsberg)"
+  },
+  "9": {
+   "name": "Electrochemical conversion",
+   "category": "electrochemical",
+   "form": "reaction_gibbs",
+   "example": {
+    "title": "Hydrogen fuel cell",
+    "label": "Hydrogen fuel cell",
+    "description": "0.01 mol/s of H₂ (ΔG = −237.1 kJ/mol) claims 2 kW — checked against −ΔG × rate."
+   },
+   "tech": "Hydrogen, methane and methanol fuel cells",
+   "checks": "Output ≤ −ΔG × reaction rate (ΔG < 0 required)"
+  }
+ }
+}
