@@ -1,0 +1,185 @@
+Model 2 Finite hot and cold stream engine
+=========================================
+Full results for every case in Model_2_Finite_hot_and_cold_stream_engine.csv (same Case IDs).
+
+--- M2-01  Normal heat recovery  (Website example E05) ---
+Example: 10 kW claimed; the cold outlet is calculated.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Claimed work or power output (kW) = 10
+Verdict: FEASIBLE / NOT REJECTED
+    - Exact reversible limit applied: W_max = Q_hot - Q_cold,rev, where the cold outlet makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+    - The cold-stream outlet was not given; the First Law fixes it at 320.76 K (Q_cold = Q_hot - W = 115.4 kW).
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.015793 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Finite-stream reversible work limit: W = 10 kW vs W_max = 15.056 kW  (criterion: W ≤ W_max)
+
+--- M2-02  Excessive work claim  (Website example E06) ---
+Example: 150 kW claimed from 125.4 kW of heat.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Claimed work or power output (kW) = 150
+Verdict: NOT FEASIBLE
+    - Claimed work 150 kW is not less than the 125.4 kW released by the hot stream: no cold-stream outlet can satisfy the First Law.
+    - W_max = Q_hot - Q_cold,rev, where the cold outlet T_rev makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet: T_rev = 319.55 K, W_max = 15.0563 kW.
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Finite-stream reversible work limit: W = 150 kW vs W_max = 15.056 kW  (criterion: W ≤ W_max)
+
+--- M2-03  Reversible limit  (Website example E07) ---
+Example: No claim: the maximum reversible work W_max.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: LIMIT CALCULATED — NO CLAIM TO TEST
+    - W_max = Q_hot - Q_cold,rev, where the cold outlet T_rev makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet: T_rev = 319.55 K, W_max = 15.0563 kW.
+    - No work claim was given, so there is nothing to accept or reject; any claim up to W_max is admissible.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT EVALUATED] Finite-stream reversible work limit: W = — vs W_max = 15.056 kW  (criterion: W ≤ W_max)
+
+--- M2-04  Exhaust-gas engine (described in words)  (Website example E08) ---
+Scenario: Exhaust gas at 2 kg/s enters at 500 °C and leaves at 150 °C, cp = 1.1 kJ/kg K. Cooling water at 5 kg/s enters at 20 °C. The engine claims 300 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2.0
+    Hot stream inlet temperature (K) = 773.15
+    Hot stream outlet temperature (K) = 423.15
+    Hot stream Cp (kJ/kg K) = 1.1
+    Cold stream mass flow (kg/s) = 5.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Claimed work or power output (kW) = 300.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Exact reversible limit applied: W_max = Q_hot - Q_cold,rev, where the cold outlet makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+    - The cold-stream outlet was not given; the First Law fixes it at 315.64 K (Q_cold = Q_hot - W = 470 kW).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.21871 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Finite-stream reversible work limit: W = 300 kW vs W_max = 368.67 kW  (criterion: W ≤ W_max)
+
+--- M2-05  Test case 2.1  (Test-case PDF 2.1) ---
+Scenario: A hot water stream flows at 1 kg/s and cools from 90°C to 60°C. A cold water stream flows at 1 kg/s and enters at 20°C. The system produces 20 kW shaft work. Assume Cp = 4.18 kJ/kg K. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1.0
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Claimed work or power output (kW) = 20.0
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-0.0154997); this violates the Second Law for the stated boundary/model.
+    - Claimed useful work (20) exceeds the modelled reversible upper limit (15.0563).
+    - Exact reversible limit applied: W_max = Q_hot - Q_cold,rev, where the cold outlet makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet.
+    - The cold-stream outlet was not given; the First Law fixes it at 318.37 K (Q_cold = Q_hot - W = 105.4 kW).
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -0.0155 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Finite-stream reversible work limit: W = 20 kW vs W_max = 15.056 kW  (criterion: W ≤ W_max)
+
+--- M2-06  Test case 2.2  (Test-case PDF 2.2) ---
+Scenario: Hot water flows at 1 kg/s and cools from 90°C to 60°C. Cold water flows at 1 kg/s and enters at 20°C. The system claims 150 kW work. Cp = 4.18 kJ/kg K. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1.0
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Claimed work or power output (kW) = 150.0
+Verdict: NOT FEASIBLE
+    - Claimed work 150 kW is not less than the 125.4 kW released by the hot stream: no cold-stream outlet can satisfy the First Law.
+    - W_max = Q_hot - Q_cold,rev, where the cold outlet T_rev makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet: T_rev = 319.55 K, W_max = 15.0563 kW.
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Finite-stream reversible work limit: W = 150 kW vs W_max = 15.056 kW  (criterion: W ≤ W_max)
+
+--- M2-07  Test case 2.3  (Test-case PDF 2.3) ---
+Scenario: Hot water flows at 1 kg/s and cools from 90°C to 60°C. Cold water flows at 1 kg/s and enters at 20°C. The system operates reversibly and produces maximum work. Cp = 4.18 kJ/kg K. Calculate the limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1.0
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: LIMIT CALCULATED — NO CLAIM TO TEST
+    - W_max = Q_hot - Q_cold,rev, where the cold outlet T_rev makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet: T_rev = 319.55 K, W_max = 15.0563 kW.
+    - No work claim was given, so there is nothing to accept or reject; any claim up to W_max is admissible.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT EVALUATED] Finite-stream reversible work limit: W = — vs W_max = 15.056 kW  (criterion: W ≤ W_max)
+
+--- M2-08  Test case 2.4  (Test-case PDF 2.4) ---
+Scenario: Hot water flows at 2 kg/s and cools from 120°C to 80°C. Cold water flows at 1 kg/s and enters at 25°C. Cp = 4.18 kJ/kg K. Determine maximum reversible work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2.0
+    Hot stream inlet temperature (K) = 393.15
+    Hot stream outlet temperature (K) = 353.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 298.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: LIMIT CALCULATED — NO CLAIM TO TEST
+    - W_max = Q_hot - Q_cold,rev, where the cold outlet T_rev makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet: T_rev = 369.52 K, W_max = 36.0912 kW.
+    - No work claim was given, so there is nothing to accept or reject; any claim up to W_max is admissible.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT EVALUATED] Finite-stream reversible work limit: W = — vs W_max = 36.091 kW  (criterion: W ≤ W_max)
+
+--- M2-09  Test case 2.5  (Test-case PDF 2.5) ---
+Scenario: A data centre server releases 18 kW waste heat. Hot water flows at 0.5 kg/s and enters recovery at 55°C, exiting at 46.4°C. Cold water flows at 0.8 kg/s and enters at 25°C. Cp = 4.18 kJ/kg K. Calculate available reversible work and check claimed work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 0.5
+    Hot stream inlet temperature (K) = 328.15
+    Hot stream outlet temperature (K) = 319.55
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 0.8
+    Cold stream inlet temperature (K) = 298.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: LIMIT CALCULATED — NO CLAIM TO TEST
+    - W_max = Q_hot - Q_cold,rev, where the cold outlet T_rev makes S_gen = 0 for the stated hot stream and the stated cold-stream flow and inlet: T_rev = 303.14 K, W_max = 1.2873 kW.
+    - No work claim was given, so there is nothing to accept or reject; any claim up to W_max is admissible.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT EVALUATED] Finite-stream reversible work limit: W = — vs W_max = 1.2873 kW  (criterion: W ≤ W_max)
+
+--- M2-10  Test case 2.6  (Test-case PDF 2.6) ---
+Scenario: Hot water flows at 1 kg/s and cools from 100°C to 60°C. A cold stream receives the released heat. Determine maximum reversible work.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Inlet temperature of the cold fluid.; Mass flow rate of the cold fluid.; Heat capacity Cp of the cold fluid (if it is not water).
+

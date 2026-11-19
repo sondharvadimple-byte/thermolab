@@ -1,0 +1,163 @@
+Model 4 Closed system
+=====================
+Full results for every case in Model_4_Closed_system.csv (same Case IDs).
+
+--- M4-01  Complete cycle  (Website example E13) ---
+Example: 500 kJ in at 600 K, 300 kJ out at 300 K, 200 kJ work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 500
+    Heat interaction 1 boundary temperature (K) = 600
+    Heat interaction 2 heat into system (kJ) = -300
+    Heat interaction 2 boundary temperature (K) = 300
+    Work done by the system W (kJ) = 200
+    Change in system energy dE (kJ) = 0
+    Change in system entropy dS (kJ/K) = 0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.16667 kJ/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-02  Piston-cylinder  (Website example E14) ---
+Example: 15 kJ heat at 300 K, ΔU = 10 kJ, ΔS = 0.06 kJ/K.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 15
+    Heat interaction 1 boundary temperature (K) = 300
+    Work done by the system W (kJ) = 5
+    Change in system energy dE (kJ) = 10
+    Change in system entropy dS (kJ/K) = 0.06
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.01 kJ/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-03  First Law violation  (Website example E15) ---
+Example: Q − W = 200 kJ but ΔE = 100 kJ; ΔS is not needed for this check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 500
+    Work done by the system W (kJ) = 300
+    Change in system energy dE (kJ) = 100
+Verdict: NOT FEASIBLE
+    - First Law consistency check failed: residual = 100 kJ.
+    - Not evaluated: Second Law (system entropy change Delta S).
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): Residual = 100 kJ  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-04  Second Law violation  (Website example E16) ---
+Example: Heat taken at 300 K, rejected at 600 K.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 500
+    Heat interaction 1 boundary temperature (K) = 300
+    Heat interaction 2 heat into system (kJ) = -300
+    Heat interaction 2 boundary temperature (K) = 600
+    Work done by the system W (kJ) = 200
+    Change in system energy dE (kJ) = 0
+    Change in system entropy dS (kJ/K) = 0
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-1.16667); this violates the Second Law for the stated boundary/model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -1.1667 kJ/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-05  Test case 4.1  (Test-case PDF 4.1) ---
+Scenario: A closed system completes a cycle. It receives 500 kJ heat from 600 K and rejects 300 kJ to 300 K. It produces 200 kJ net work. Check both laws.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 500.0
+    Heat interaction 1 boundary temperature (K) = 600.0
+    Heat interaction 2 heat into system (kJ) = -300.0
+    Heat interaction 2 boundary temperature (K) = 300.0
+    Change in system energy dE (kJ) = 0
+    Change in system entropy dS (kJ/K) = 0
+    Work done by the system W (kJ) = 200.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.16667 kJ/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-06  Test case 4.2  (Test-case PDF 4.2) ---
+Scenario: A closed system receives 500 kJ heat, produces 300 kJ work, and its internal energy increases by 100 kJ. Check energy balance.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 500.0
+    Change in system energy dE (kJ) = 100.0
+    Work done by the system W (kJ) = 300.0
+Verdict: NOT FEASIBLE
+    - First Law consistency check failed: residual = 100 kJ.
+    - Not evaluated: Second Law (system entropy change Delta S).
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): Residual = 100 kJ  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-07  Test case 4.3  (Test-case PDF 4.3) ---
+Scenario: A complete cycle receives 500 kJ heat from a 300 K reservoir and rejects 300 kJ to a 600 K reservoir. It produces 200 kJ net work. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Change in system energy dE (kJ) = 0
+    Change in system entropy dS (kJ/K) = 0
+    Work done by the system W (kJ) = 200.0
+    Heat interaction 1 heat into system (kJ) = 500.0
+    Heat interaction 1 boundary temperature (K) = 300.0
+    Heat interaction 2 heat into system (kJ) = -300.0
+    Heat interaction 2 boundary temperature (K) = 600.0
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-1.16667); this violates the Second Law for the stated boundary/model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -1.1667 kJ/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-08  Test case 4.4  (Test-case PDF 4.4) ---
+Scenario: A piston-cylinder receives 100 kJ heat and performs 60 kJ boundary work. Initial internal energy is 500 kJ. Calculate final internal energy.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 100.0
+    Initial internal energy U1 (kJ) = 500.0
+    Work done by the system W (kJ) = 60.0
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Not evaluated: Second Law (system entropy change Delta S).
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-09  Test case 4.5  (Test-case PDF 4.5) ---
+Scenario: A closed system receives 100 kJ heat and produces 50 kJ work. Calculate entropy generation.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 100.0
+    Work done by the system W (kJ) = 50.0
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Not evaluated: Second Law (system entropy change Delta S).
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M4-10  Additional scenario 6  (Additional scenario S06) ---
+Scenario: A piston-cylinder device holds gas that receives 40 kJ of heat while its internal energy increases by 25 kJ. It does 15 kJ of work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Heat interaction 1 heat into system (kJ) = 40.0
+    Change in system energy dE (kJ) = 25.0
+    Work done by the system W (kJ) = 15.0
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Not evaluated: Second Law (system entropy change Delta S).
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+

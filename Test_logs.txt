@@ -1,0 +1,200 @@
+===== Engine self-test =====
+Command: python thermodynamic_feasibility_tester_MASTER.py --self-test
+
+SELF-TEST PASSED: 27 checks
+  PASS — constant-Cp enthalpy/entropy formulas and sign convention
+  PASS — linear-Cp formula and constant-Cp special case
+  PASS — adaptive Simpson integration vs analytical Cp(T)
+  PASS — bracketed bisection temperature solver
+  PASS — fixed-reservoir First Law, Carnot, entropy and feasible verdict
+  PASS — reversible fixed-reservoir limiting case
+  PASS — impossible fixed-reservoir claim rejected
+  PASS — finite-stream properties, energy consistency and entropy generation
+  PASS — effective-temperature reference is informational, not a universal feasibility limit
+  PASS — finite-stream heat-recovery energy, entropy and exergy-destruction model
+  PASS — heat-recovery model rejects an unaccounted energy mismatch
+  PASS — variable-Cp and phase-change property calculations
+  PASS — steady control-volume mass, energy and entropy balances
+  PASS — closed-system First Law and entropy balance
+  PASS — inconsistent First Law input correctly rejected
+  PASS — steady control-volume mass conservation check
+  PASS — missing independent work claim returns insufficient data
+  PASS — safe derivation and provenance tracking for closed-system and steady-CV work
+  PASS — negative entropy generation correctly rejected
+  PASS — Model 6 rounding allowance and temperature-cross rejection
+  PASS — Model 7 mechanical limit (8 W walking example; 10 W claim rejected)
+  PASS — Model 8 Petela-Landsberg fraction
+  PASS — Model 9 Gibbs-energy limit (2 kW) and rejection of 2.5 kW claim
+  PASS — model registry: selectable models numbered 1-9; property utility and fallback unnumbered
+  PASS — Model 5 refrigerator Carnot COP (9) and rejection of COP 50
+  PASS — Model 2 optional exact S_gen = 0 limit (272.34 kW reference case)
+  PASS — Model 1 rejects work greater than heat input with a First Law verdict
+
+
+===== Python unit tests =====
+Command: python -m unittest -v
+
+test_ambiguous_claim_is_not_judged (test_auto_analyzer.DomainTests.test_ambiguous_claim_is_not_judged) ... ok
+test_assumptions_are_reported (test_auto_analyzer.DomainTests.test_assumptions_are_reported) ... ok
+test_domains_and_verdicts (test_auto_analyzer.DomainTests.test_domains_and_verdicts) ... ok
+test_refrigerator_is_evaluated_with_carnot_cop (test_auto_analyzer.DomainTests.test_refrigerator_is_evaluated_with_carnot_cop) ... ok
+test_wind_betz_value (test_auto_analyzer.DomainTests.test_wind_betz_value) ... ok
+test_cool_hot_oil_is_the_hot_stream (test_auto_analyzer.HeatExchangerTests.test_cool_hot_oil_is_the_hot_stream) ... ok
+test_missing_outlet_is_inferred_and_t0_read (test_auto_analyzer.HeatExchangerTests.test_missing_outlet_is_inferred_and_t0_read) ... ok
+test_real_energy_mismatch_is_rejected (test_auto_analyzer.HeatExchangerTests.test_real_energy_mismatch_is_rejected) ... ok
+test_rounded_textbook_exchanger (test_auto_analyzer.HeatExchangerTests.test_rounded_textbook_exchanger) ... ok
+test_temperature_cross_is_rejected (test_auto_analyzer.HeatExchangerTests.test_temperature_cross_is_rejected) ... ok
+test_1_two_reservoir_baseline (test_auto_analyzer.M3ValidationCases.test_1_two_reservoir_baseline) ... ok
+test_2_finite_streams_infer_cold_outlet (test_auto_analyzer.M3ValidationCases.test_2_finite_streams_infer_cold_outlet) ... ok
+test_3_variable_cp_and_phase_change (test_auto_analyzer.M3ValidationCases.test_3_variable_cp_and_phase_change) ... ok
+test_4_impossible_claim (test_auto_analyzer.M3ValidationCases.test_4_impossible_claim) ... ok
+test_5_incomplete_nonthermal (test_auto_analyzer.M3ValidationCases.test_5_incomplete_nonthermal) ... ok
+test_model2_exact_limit_from_text (test_auto_analyzer.ModelMappingTests.test_model2_exact_limit_from_text) ... ok
+test_property_values (test_auto_analyzer.ModelMappingTests.test_property_values) ... ok
+test_text_maps_to_numbered_model (test_auto_analyzer.ModelMappingTests.test_text_maps_to_numbered_model) ... ok
+test_from_to_pair_inherits_unit (test_auto_analyzer.ScannerTests.test_from_to_pair_inherits_unit) ... ok
+test_units_are_converted_to_engine_units (test_auto_analyzer.ScannerTests.test_units_are_converted_to_engine_units) ... ok
+test_claim_above_heat_released_is_rejected_by_model_2 (test_auto_analyzer.TwoWaterStreamsTests.test_claim_above_heat_released_is_rejected_by_model_2) ... ok
+test_reversible_limit_separates_feasible_and_infeasible_claims (test_auto_analyzer.TwoWaterStreamsTests.test_reversible_limit_separates_feasible_and_infeasible_claims) ... ok
+test_missing_information_is_listed (test_auto_analyzer.WebsiteIntegrationTests.test_missing_information_is_listed) ... ok
+test_solver_returns_analysis_and_analyzer_code (test_auto_analyzer.WebsiteIntegrationTests.test_solver_returns_analysis_and_analyzer_code) ... ok
+test_website_no_longer_runs_the_course_assignments (test_auto_analyzer.WebsiteIntegrationTests.test_website_no_longer_runs_the_course_assignments) ... ok
+test_ambiguous_output_does_not_receive_a_verdict (test_automatic_scenarios.AutomaticScenarioTests.test_ambiguous_output_does_not_receive_a_verdict) ... ok
+test_finite_stream_prose_produces_verdict_and_actual_code (test_automatic_scenarios.AutomaticScenarioTests.test_finite_stream_prose_produces_verdict_and_actual_code) ... ok
+test_fixed_reservoir_prose_runs_directly (test_automatic_scenarios.AutomaticScenarioTests.test_fixed_reservoir_prose_runs_directly) ... ok
+test_incomplete_description_keeps_numeric_fallback (test_automatic_scenarios.AutomaticScenarioTests.test_incomplete_description_keeps_numeric_fallback) ... ok
+test_solar_and_chemical_prose (test_automatic_scenarios.AutomaticScenarioTests.test_solar_and_chemical_prose) ... ok
+test_walking_prose_runs_and_calculates_entropy (test_automatic_scenarios.AutomaticScenarioTests.test_walking_prose_runs_and_calculates_entropy) ... ok
+test_base_x100 (test_mock_assignments.MockAssignmentTests.test_base_x100) ... ok
+test_modified_x100 (test_mock_assignments.MockAssignmentTests.test_modified_x100) ... ok
+test_optional_server_heat_budget (test_mock_assignments.MockAssignmentTests.test_optional_server_heat_budget) ... ok
+test_out_of_range_suffixes (test_mock_assignments.MockAssignmentTests.test_out_of_range_suffixes) ... ok
+test_verdicts_across_each_assignment_range (test_mock_assignments.MockAssignmentTests.test_verdicts_across_each_assignment_range) ... ok
+test_local_configuration_roundtrip_and_environment_precedence (test_openai_config.OpenAIConfigTests.test_local_configuration_roundtrip_and_environment_precedence) ... ok
+test_engine_work_above_all_heat_is_a_first_law_failure (test_resource_models.ResourceModelTests.test_engine_work_above_all_heat_is_a_first_law_failure) ... ok
+test_ideal_radiation_limit (test_resource_models.ResourceModelTests.test_ideal_radiation_limit) ... ok
+test_invalid_resource_values (test_resource_models.ResourceModelTests.test_invalid_resource_values) ... ok
+test_mechanical_heat_and_entropy_balances (test_resource_models.ResourceModelTests.test_mechanical_heat_and_entropy_balances) ... ok
+test_signed_reaction_gibbs (test_resource_models.ResourceModelTests.test_signed_reaction_gibbs) ... ok
+test_walking_claims_on_both_sides_of_ceiling (test_resource_models.ResourceModelTests.test_walking_claims_on_both_sides_of_ceiling) ... ok
+test_walking_missing_or_ambiguous_data (test_resource_models.ResourceModelTests.test_walking_missing_or_ambiguous_data) ... ok
+test_ambiguous_invented_or_wrong_dimension_values_stop_assessment (test_scenario_input.ScenarioInputTests.test_ambiguous_invented_or_wrong_dimension_values_stop_assessment) ... ok
+test_closed_system_signed_heat_and_complete_json (test_scenario_input.ScenarioInputTests.test_closed_system_signed_heat_and_complete_json) ... ok
+test_conflicting_walking_claims (test_scenario_input.ScenarioInputTests.test_conflicting_walking_claims) ... ok
+test_explicit_mock_assignments_reuse_builders (test_scenario_input.ScenarioInputTests.test_explicit_mock_assignments_reuse_builders) ... ok
+test_finite_stream_case_uses_normal_engine_structure (test_scenario_input.ScenarioInputTests.test_finite_stream_case_uses_normal_engine_structure) ... ok
+test_first_law_rejection_is_preserved_by_nlp (test_scenario_input.ScenarioInputTests.test_first_law_rejection_is_preserved_by_nlp) ... ok
+test_fixed_reservoir_temperatures_and_unsupported_route (test_scenario_input.ScenarioInputTests.test_fixed_reservoir_temperatures_and_unsupported_route) ... ok
+test_hot_server_water_scenario_asks_for_data_and_accepts_labeled_reply (test_scenario_input.ScenarioInputTests.test_hot_server_water_scenario_asks_for_data_and_accepts_labeled_reply) ... ok
+test_machine_readable_handoff (test_scenario_input.ScenarioInputTests.test_machine_readable_handoff) ... ok
+test_openai_refusal_has_no_verdict (test_scenario_input.ScenarioInputTests.test_openai_refusal_has_no_verdict) ... ok
+test_openai_structured_response_handoff (test_scenario_input.ScenarioInputTests.test_openai_structured_response_handoff) ... ok
+test_paraphrase_and_power_units (test_scenario_input.ScenarioInputTests.test_paraphrase_and_power_units) ... ok
+test_steady_flow_keeps_streams_separate_and_requires_explicit_heat_basis (test_scenario_input.ScenarioInputTests.test_steady_flow_keeps_streams_separate_and_requires_explicit_heat_basis) ... ok
+test_walking_clarification_then_json_equivalence (test_scenario_input.ScenarioInputTests.test_walking_clarification_then_json_equivalence) ... ok
+test_every_model_returns_structured_rows (test_upgrade.CheckTableTests.test_every_model_returns_structured_rows) ... ok
+test_duty_only_and_underdetermined (test_upgrade.HeatExchangerModeTests.test_duty_only_and_underdetermined) ... ok
+test_heat_loss_to_surroundings_is_not_internal_transfer (test_upgrade.HeatExchangerModeTests.test_heat_loss_to_surroundings_is_not_internal_transfer) ... ok
+test_shaft_work_is_zero_and_one_outlet_is_derived (test_upgrade.HeatExchangerModeTests.test_shaft_work_is_zero_and_one_outlet_is_derived) ... ok
+test_temperature_cross_from_temperatures_only (test_upgrade.HeatExchangerModeTests.test_temperature_cross_from_temperatures_only) ... ok
+test_closed_system_derives_delta_e_and_final_energy (test_upgrade.MissingValueTests.test_closed_system_derives_delta_e_and_final_energy) ... ok
+test_mechanical_inputs_from_force_torque_wind_hydro (test_upgrade.MissingValueTests.test_mechanical_inputs_from_force_torque_wind_hydro) ... ok
+test_model2_cold_outlet_from_first_law_and_limit_only (test_upgrade.MissingValueTests.test_model2_cold_outlet_from_first_law_and_limit_only) ... ok
+test_property_totals_and_latent_heat (test_upgrade.MissingValueTests.test_property_totals_and_latent_heat) ... ok
+test_steady_cv_work_derived_and_partial_data (test_upgrade.MissingValueTests.test_steady_cv_work_derived_and_partial_data) ... ok
+test_first_law_violation (test_upgrade.RefrigerationTests.test_first_law_violation) ... ok
+test_heat_pump_cop_and_derived_work (test_upgrade.RefrigerationTests.test_heat_pump_cop_and_derived_work) ... ok
+test_missing_data_and_invalid_temperatures (test_upgrade.RefrigerationTests.test_missing_data_and_invalid_temperatures) ... ok
+test_refrigerator_above_carnot_cop_is_rejected (test_upgrade.RefrigerationTests.test_refrigerator_above_carnot_cop_is_rejected) ... ok
+test_refrigerator_below_carnot_cop (test_upgrade.RefrigerationTests.test_refrigerator_below_carnot_cop) ... ok
+test_reversible_refrigerator_is_the_limit (test_upgrade.RefrigerationTests.test_reversible_refrigerator_is_the_limit) ... ok
+test_selectable_models_are_numbered_1_to_9 (test_upgrade.RegistryTests.test_selectable_models_are_numbered_1_to_9) ... ok
+test_stable_keys_still_run (test_upgrade.RegistryTests.test_stable_keys_still_run) ... ok
+test_reversed_reservoirs_are_not_swapped (test_upgrade.RoutingTests.test_reversed_reservoirs_are_not_swapped) ... ok
+test_routes (test_upgrade.RoutingTests.test_routes) ... ok
+test_all_63_cases (test_upgrade.TestCasePdfSuite.test_all_63_cases) ... ok
+test_key_numbers (test_upgrade.TestCasePdfSuite.test_key_numbers) ... ok
+test_below_absolute_zero_is_rejected (test_upgrade.UnitAndValidationTests.test_below_absolute_zero_is_rejected) ... ok
+test_celsius_watts_grams_litres (test_upgrade.UnitAndValidationTests.test_celsius_watts_grams_litres) ... ok
+test_mixed_kj_and_kw_is_rejected (test_upgrade.UnitAndValidationTests.test_mixed_kj_and_kw_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 83 tests in 0.571s
+
+OK
+
+
+===== Website tests =====
+Command: node --test website/test_ui.cjs
+
+TAP version 13
+# Subtest: local scenario opens empty numeric fields and submits engine JSON
+ok 1 - local scenario opens empty numeric fields and submits engine JSON
+  ---
+  duration_ms: 53.067026
+  type: 'test'
+  ...
+# Subtest: automatic analysis shows the interpretation and asks only for missing data
+ok 2 - automatic analysis shows the interpretation and asks only for missing data
+  ---
+  duration_ms: 12.055572
+  type: 'test'
+  ...
+# Subtest: model list is numbered 1-9 in order and the property utility is not selectable
+ok 3 - model list is numbered 1-9 in order and the property utility is not selectable
+  ---
+  duration_ms: 2.09812
+  type: 'test'
+  ...
+# Subtest: example library: categories, representative examples first, show more, filters
+ok 4 - example library: categories, representative examples first, show more, filters
+  ---
+  duration_ms: 3.894512
+  type: 'test'
+  ...
+# Subtest: home page: exactly nine example cards, one per model, that fill the workbench without running
+ok 5 - home page: exactly nine example cards, one per model, that fill the workbench without running
+  ---
+  duration_ms: 9.838315
+  type: 'test'
+  ...
+# Subtest: model reference table lists all nine models with their technologies and checks
+ok 6 - model reference table lists all nine models with their technologies and checks
+  ---
+  duration_ms: 1.630832
+  type: 'test'
+  ...
+# Subtest: every example fills the right form, leaves no stale values, and gives its intended verdict in the real engine
+ok 7 - every example fills the right form, leaves no stale values, and gives its intended verdict in the real engine
+  ---
+  duration_ms: 255.316196
+  type: 'test'
+  ...
+# Subtest: balance and limit checks render as a table, never as raw JSON
+ok 8 - balance and limit checks render as a table, never as raw JSON
+  ---
+  duration_ms: 16.702488
+  type: 'test'
+  ...
+# Subtest: results show the energy path, balance closure, entropy gauge, temperatures and a sensitivity sweep
+ok 9 - results show the energy path, balance closure, entropy gauge, temperatures and a sensitivity sweep
+  ---
+  duration_ms: 138.608383
+  type: 'test'
+  ...
+# Subtest: theme button switches between light and dark and remembers the choice
+ok 10 - theme button switches between light and dark and remembers the choice
+  ---
+  duration_ms: 2.704524
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 553.773199
+

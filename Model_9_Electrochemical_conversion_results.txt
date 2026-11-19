@@ -1,0 +1,180 @@
+Model 9 Electrochemical conversion
+==================================
+Full results for every case in Model_9_Electrochemical_conversion.csv (same Case IDs).
+
+--- M9-01  Hydrogen fuel cell  (Website example E38) ---
+Example: 0.01 mol/s: 2.37 kW limit, 2 kW claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H₂ + ½O₂ → H₂O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -237.141
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 2
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 2 kW vs limit = 2.3714 kW  (criterion: Output ≤ limit)
+
+--- M9-02  Methanol fuel cell (described in words)  (Website example E39) ---
+Scenario: A methanol fuel cell uses 0.5 g/s of methanol and delivers 8 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = CH3OH(l) + 3/2 O2 -> CO2 + 2 H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -702.4
+    Reaction rate (mol/s) = 0.0156055
+    Claimed work or power output (kW) = 8.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 8 kW vs limit = 10.961 kW  (criterion: Output ≤ limit)
+
+--- M9-03  Methane fuel cell  (Website example E40) ---
+Example: ΔG° = −817.9 kJ/mol, 0.002 mol/s: 1.64 kW limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = CH₄ + 2O₂ → CO₂ + 2H₂O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -817.9
+    Reaction rate (mol/s) = 0.002
+    Claimed work or power output (kW) = 1.2
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 1.2 kW vs limit = 1.6358 kW  (criterion: Output ≤ limit)
+
+--- M9-04  Methanol fuel cell  (Website example E41) ---
+Example: ΔG° = −702.4 kJ/mol, 0.001 mol/s: 0.70 kW < 0.8 kW claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = CH₃OH + 3/2O₂ → CO₂ + 2H₂O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -702.4
+    Reaction rate (mol/s) = 0.001
+    Claimed work or power output (kW) = 0.8
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.8) exceeds the modelled reversible upper limit (0.7024).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Gibbs energy limit: Output = 0.8 kW vs limit = 0.7024 kW  (criterion: Output ≤ limit)
+
+--- M9-05  Reversible limit  (Website example E42) ---
+Example: Exactly −ΔG × rate is claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H₂ + ½O₂ → H₂O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -237.141
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 2.37141
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 2.3714 kW vs limit = 2.3714 kW  (criterion: Output ≤ limit)
+
+--- M9-06  Gibbs-energy sign error  (Website example E43) ---
+Example: ΔG > 0: the reaction needs work, it cannot give 1 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H₂ + ½O₂ → H₂O(l)
+    Gibbs energy of reaction dG (kJ/mol) = 237.141
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 1
+Verdict: NOT FEASIBLE
+    - The specified forward reaction requires external work input at the stated conditions.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Gibbs energy limit: Output = 1 kW vs limit = 0 kW  (criterion: Output ≤ limit)
+
+--- M9-07  Test case 10.1  (Test-case PDF 10.1) ---
+Scenario: Hydrogen fuel cell has ∆G = −237000 J/mol and reaction rate 0.01 mol/s. It produces 2000 W. Calculate reversible power and check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H2 + 1/2 O2 -> H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -237.0
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 2.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 2 kW vs limit = 2.37 kW  (criterion: Output ≤ limit)
+
+--- M9-08  Test case 10.2  (Test-case PDF 10.2) ---
+Scenario: Hydrogen fuel cell has ∆G = −237000 J/mol and rate 0.01 mol/s. It claims 2500 W electrical output. Check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H2 + 1/2 O2 -> H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -237.0
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 2.5
+Verdict: NOT FEASIBLE
+    - Claimed useful work (2.5) exceeds the modelled reversible upper limit (2.37).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Gibbs energy limit: Output = 2.5 kW vs limit = 2.37 kW  (criterion: Output ≤ limit)
+
+--- M9-09  Test case 10.3  (Test-case PDF 10.3) ---
+Scenario: Hydrogen fuel cell has ∆G = −237000 J/mol and rate 0.01 mol/s. It produces exactly 2370 W. Check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H2 + 1/2 O2 -> H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -237.0
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 2.37
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 2.37 kW vs limit = 2.37 kW  (criterion: Output ≤ limit)
+
+--- M9-10  Test case 10.4  (Test-case PDF 10.4) ---
+Scenario: Methane electrochemical reaction has ∆G = −800000 J/mol and rate 0.002 mol/s. Output is 1200 W. Check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = CH4 + 2 O2 -> CO2 + 2 H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -800.0
+    Reaction rate (mol/s) = 0.002
+    Claimed work or power output (kW) = 1.2
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 1.2 kW vs limit = 1.6 kW  (criterion: Output ≤ limit)
+
+--- M9-11  Test case 10.5  (Test-case PDF 10.5) ---
+Scenario: Methanol electrochemical reaction has ∆G = −700000 J/mol and rate 0.001 mol/s. Output is 800 W. Check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = CH3OH(l) + 3/2 O2 -> CO2 + 2 H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -700.0
+    Reaction rate (mol/s) = 0.001
+    Claimed work or power output (kW) = 0.8
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.8) exceeds the modelled reversible upper limit (0.7).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Gibbs energy limit: Output = 0.8 kW vs limit = 0.7 kW  (criterion: Output ≤ limit)
+
+--- M9-12  Test case 10.6  (Test-case PDF 10.6) ---
+Scenario: Hydrogen fuel cell has ∆G = −237000 J/mol and produces 1000 W. Determine feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Reaction or fuel consumption rate (mol/s or g/s).
+
+--- M9-13  Test case 10.7  (Test-case PDF 10.7) ---
+Scenario: Fuel-cell reaction has ∆G = +237000 J/mol and rate 0.01 mol/s. It claims 1000 W electrical output. Check whether this is a spontaneous fuel-cell reaction.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = as stated in the description
+    Gibbs energy of reaction dG (kJ/mol) = 237.0
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 1.0
+Verdict: NOT FEASIBLE
+    - The specified forward reaction requires external work input at the stated conditions.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Gibbs energy limit: Output = 1 kW vs limit = 0 kW  (criterion: Output ≤ limit)
+
+--- M9-14  Additional scenario 13  (Additional scenario S13) ---
+Scenario: A hydrogen fuel cell consumes 0.01 mol/s of H2 and produces 2 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Reaction = H2 + 1/2 O2 -> H2O(l)
+    Gibbs energy of reaction dG (kJ/mol) = -237.1
+    Reaction rate (mol/s) = 0.01
+    Claimed work or power output (kW) = 2.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Gibbs energy limit: Output = 2 kW vs limit = 2.371 kW  (criterion: Output ≤ limit)
+

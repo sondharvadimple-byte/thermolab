@@ -1,0 +1,213 @@
+Model 5 Refrigerator and heat pump
+==================================
+Full results for every case in Model_5_Refrigerator_and_heat_pump.csv (same Case IDs).
+
+--- M5-01  Normal refrigerator  (Website example E17) ---
+Example: Freezer at −18 °C: COP 3 vs Carnot 5.9.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 255.15
+    Hot reservoir / hot-side temperature (K) = 298.15
+    Heat removed from cold side Q_C (kW or kJ) = 0.3
+    Work input W_in (kW or kJ) = 0.1
+Verdict: FEASIBLE / NOT REJECTED
+    - Heat rejected/delivered to the hot side was calculated from the First Law: 0.4 kW.
+    - COP_R = 3 vs Carnot COP_R,max = 5.934 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.00016583 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 3 vs COP_max = 5.9337  (criterion: COP ≤ Carnot COP)
+
+--- M5-02  Refrigerator exceeding Carnot COP  (Website example E18) ---
+Example: COP 10 claimed; Carnot allows 5.9.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 255.15
+    Hot reservoir / hot-side temperature (K) = 298.15
+    Heat removed from cold side Q_C (kW or kJ) = 0.3
+    Work input W_in (kW or kJ) = 0.03
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-6.89535e-05); this violates the Second Law for the stated boundary/model.
+    - Heat rejected/delivered to the hot side was calculated from the First Law: 0.33 kW.
+    - COP_R = 10 vs Carnot COP_R,max = 5.934 (exceeds the reversible limit).
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -6.8954e-05 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Carnot COP limit: COP = 10 vs COP_max = 5.9337  (criterion: COP ≤ Carnot COP)
+
+--- M5-03  Normal heat pump  (Website example E19) ---
+Example: 10 kW to a 35 °C circuit from 0 °C air, COP 4.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = heat_pump
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 273.15
+    Hot reservoir / hot-side temperature (K) = 308.15
+    Heat delivered to hot side Q_H (kW or kJ) = 10
+    Work input W_in (kW or kJ) = 2.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Heat extracted from the cold space/reservoir was calculated from the First Law: 7.5 kW.
+    - COP_HP = 4 vs Carnot COP_HP,max = 8.804 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.0049943 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 4 vs COP_max = 8.8043  (criterion: COP ≤ Carnot COP)
+
+--- M5-04  Heat pump exceeding Carnot COP  (Website example E20) ---
+Example: COP 10 claimed; Carnot allows 8.8.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = heat_pump
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 273.15
+    Hot reservoir / hot-side temperature (K) = 308.15
+    Heat delivered to hot side Q_H (kW or kJ) = 10
+    Work input W_in (kW or kJ) = 1
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-0.000497201); this violates the Second Law for the stated boundary/model.
+    - Heat extracted from the cold space/reservoir was calculated from the First Law: 9 kW.
+    - COP_HP = 10 vs Carnot COP_HP,max = 8.804 (exceeds the reversible limit).
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -0.0004972 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Carnot COP limit: COP = 10 vs COP_max = 8.8043  (criterion: COP ≤ Carnot COP)
+
+--- M5-05  Missing work input  (Website example E21) ---
+Example: Only the cooling load is known.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 255.15
+    Hot reservoir / hot-side temperature (K) = 298.15
+    Heat removed from cold side Q_C (kW or kJ) = 0.3
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Two of the three energy quantities are needed; missing: heat rejected/delivered to the hot side, work (or electrical power) input.
+Balance and limit checks:
+    [NOT EVALUATED] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT EVALUATED] Carnot COP limit: COP = — vs COP_max = —  (criterion: COP ≤ Carnot COP)
+
+--- M5-06  Test case 6.1  (Test-case PDF 6.1) ---
+Scenario: A refrigerator extracts 500 kJ at 270 K and rejects 650 kJ at 300 K while consuming 150 kJ work. Determine COP and whether current engine supports it.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Heat removed from cold side Q_C (kW or kJ) = 500.0
+    Heat delivered to hot side Q_H (kW or kJ) = 650.0
+    Work input W_in (kW or kJ) = 150.0
+    Energy basis = kJ
+    Cold reservoir / cold-side temperature (K) = 270.0
+    Hot reservoir / hot-side temperature (K) = 300.0
+Verdict: FEASIBLE / NOT REJECTED
+    - COP_R = 3.333 vs Carnot COP_R,max = 9 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kJ  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.31481 kJ/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 3.3333 vs COP_max = 9  (criterion: COP ≤ Carnot COP)
+
+--- M5-07  Test case 6.2  (Test-case PDF 6.2) ---
+Scenario: A heat pump absorbs 5 kW at 280 K and delivers 7 kW at 300 K, consuming 2 kW work. Analyse it.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = heat_pump
+    Heat removed from cold side Q_C (kW or kJ) = 5.0
+    Heat delivered to hot side Q_H (kW or kJ) = 7.0
+    Work input W_in (kW or kJ) = 2.0
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 280.0
+    Hot reservoir / hot-side temperature (K) = 300.0
+Verdict: FEASIBLE / NOT REJECTED
+    - COP_HP = 3.5 vs Carnot COP_HP,max = 15 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.0054762 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 3.5 vs COP_max = 15  (criterion: COP ≤ Carnot COP)
+
+--- M5-08  Additional scenario 7  (Additional scenario S07) ---
+Scenario: An air conditioner removes 3 kW from a room at 24 °C and rejects heat outdoors at 35 °C using 0.8 kW of electricity.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Heat removed from cold side Q_C (kW or kJ) = 3.0
+    Work input W_in (kW or kJ) = 0.8
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 297.15
+    Hot reservoir / hot-side temperature (K) = 308.15
+Verdict: FEASIBLE / NOT REJECTED
+    - Heat rejected/delivered to the hot side was calculated from the First Law: 3.8 kW.
+    - COP_R = 3.75 vs Carnot COP_R,max = 27.01 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.0022357 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 3.75 vs COP_max = 27.014  (criterion: COP ≤ Carnot COP)
+
+--- M5-09  Additional scenario 8  (Additional scenario S08) ---
+Scenario: A heat pump delivers 10 kW to a house at 20 °C, taking heat from outside air at 0 °C. It consumes 2.5 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = heat_pump
+    Heat delivered to hot side Q_H (kW or kJ) = 10.0
+    Work input W_in (kW or kJ) = 2.5
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 273.15
+    Hot reservoir / hot-side temperature (K) = 293.15
+Verdict: FEASIBLE / NOT REJECTED
+    - Heat extracted from the cold space/reservoir was calculated from the First Law: 7.5 kW.
+    - COP_HP = 4 vs Carnot COP_HP,max = 14.66 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.0066548 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 4 vs COP_max = 14.657  (criterion: COP ≤ Carnot COP)
+
+--- M5-10  Additional scenario 15  (Additional scenario S15) ---
+Scenario: A refrigerator removes 300 W from a freezer at -18 °C and rejects heat to a kitchen at 25 °C using 100 W of electricity.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Heat removed from cold side Q_C (kW or kJ) = 0.3
+    Work input W_in (kW or kJ) = 0.1
+    Energy basis = kW
+    Cold reservoir / cold-side temperature (K) = 255.15
+    Hot reservoir / hot-side temperature (K) = 298.15
+Verdict: FEASIBLE / NOT REJECTED
+    - Heat rejected/delivered to the hot side was calculated from the First Law: 0.4 kW.
+    - COP_R = 3 vs Carnot COP_R,max = 5.934 (does not exceed the reversible limit).
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.00016583 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot COP limit: COP = 3 vs COP_max = 5.9337  (criterion: COP ≤ Carnot COP)
+
+--- M5-11  Additional scenario 16  (Additional scenario S16) ---
+Scenario: A freezer at -18 °C in a 25 °C kitchen claims a COP of 8 while removing 300 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Device = refrigerator
+    Heat removed from cold side Q_C (kW or kJ) = 0.3
+    Energy basis = kW
+    Work input W_in (kW or kJ) = 0.0375
+    Cold reservoir / cold-side temperature (K) = 255.15
+    Hot reservoir / hot-side temperature (K) = 298.15
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-4.37984e-05); this violates the Second Law for the stated boundary/model.
+    - Heat rejected/delivered to the hot side was calculated from the First Law: 0.3375 kW.
+    - COP_R = 8 vs Carnot COP_R,max = 5.934 (exceeds the reversible limit).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -4.3798e-05 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Carnot COP limit: COP = 8 vs COP_max = 5.9337  (criterion: COP ≤ Carnot COP)
+
+--- M5-12  Additional scenario 18  (Additional scenario S18) ---
+Scenario: A refrigerator removes 5 kJ from a cold space at 260 K and rejects heat at 300 K using 1 kW of work.
+Verdict: INPUT ERROR
+Message: Mixed energy amounts (kJ) and rates (kW): give all heats and the work on the same basis.
+

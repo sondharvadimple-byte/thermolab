@@ -1,0 +1,173 @@
+Model 1 Fixed reservoir heat engine
+===================================
+Full results for every case in Model_1_Fixed_reservoir_heat_engine.csv (same Case IDs).
+
+--- M1-01  Normal feasible heat engine  (Website example E01) ---
+Example: 40 kW from 100 kW between 600 K and 300 K.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600
+    Cold reservoir / cold-side temperature (K) = 300
+    Heat supplied Q_H (kW) = 100
+    Claimed work or power output (kW) = 40
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.033333 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 40 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-02  Carnot-limit case  (Website example E02) ---
+Example: Exactly the Carnot work: S_gen = 0.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600
+    Cold reservoir / cold-side temperature (K) = 300
+    Heat supplied Q_H (kW) = 100
+    Claimed work or power output (kW) = 50
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is approximately zero: reversible limiting case within numerical tolerance.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 50 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-03  Carnot violation  (Website example E03) ---
+Example: 60 % claimed against a 50 % Carnot limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600
+    Cold reservoir / cold-side temperature (K) = 300
+    Heat supplied Q_H (kW) = 100
+    Claimed work or power output (kW) = 60
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-0.0333333); this violates the Second Law for the stated boundary/model.
+    - Claimed useful work (60) exceeds the modelled reversible upper limit (50).
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -0.033333 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Carnot limit: eta = 60 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-04  Missing-temperature case  (Website example E04) ---
+Scenario: A heat engine receives 100 kW of heat and produces 40 kW of work. Determine feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Temperature of the heat source.
+
+--- M1-05  Test case 1.1  (Test-case PDF 1.1) ---
+Scenario: A cyclic heat engine receives 100 kW from a hot reservoir at 600 K and rejects heat to a cold reservoir at 300 K. It produces 40 kW of net work. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600.0
+    Cold reservoir / cold-side temperature (K) = 300.0
+    Heat supplied Q_H (kW) = 100.0
+    Claimed work or power output (kW) = 40.0
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.033333 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 40 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-06  Test case 1.2  (Test-case PDF 1.2) ---
+Scenario: A cyclic heat engine receives 100 kW at 600 K and rejects heat at 300 K. It claims 60 kW of work. Is this possible?
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600.0
+    Cold reservoir / cold-side temperature (K) = 300.0
+    Heat supplied Q_H (kW) = 100.0
+    Claimed work or power output (kW) = 60.0
+Verdict: NOT FEASIBLE
+    - Entropy generation is negative (-0.0333333); this violates the Second Law for the stated boundary/model.
+    - Claimed useful work (60) exceeds the modelled reversible upper limit (50).
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -0.033333 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [FAIL] Carnot limit: eta = 60 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-07  Test case 1.3  (Test-case PDF 1.3) ---
+Scenario: A reversible cyclic heat engine receives 100 kW at 600 K, rejects heat at 300 K, and produces 50 kW of work. Check both laws.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600.0
+    Cold reservoir / cold-side temperature (K) = 300.0
+    Heat supplied Q_H (kW) = 100.0
+    Claimed work or power output (kW) = 50.0
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is approximately zero: reversible limiting case within numerical tolerance.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 50 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-08  Test case 1.4  (Test-case PDF 1.4) ---
+Scenario: A heat engine receives 200 kW at 800 K and rejects heat at 400 K. It produces 70 kW of work. Compare actual and Carnot efficiency.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 800.0
+    Cold reservoir / cold-side temperature (K) = 400.0
+    Heat supplied Q_H (kW) = 200.0
+    Claimed work or power output (kW) = 70.0
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.075 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 35 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-09  Test case 1.5  (Test-case PDF 1.5) ---
+Scenario: A heat engine receives 100 kW of heat and produces 40 kW of work. Determine feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Temperature of the heat source.
+
+--- M1-10  Test case 6.5  (Test-case PDF 6.5) ---
+Scenario: A cyclic engine receives 100 kW at 600 K, rejects heat at 300 K, and produces 40 kW work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600.0
+    Cold reservoir / cold-side temperature (K) = 300.0
+    Heat supplied Q_H (kW) = 100.0
+    Claimed work or power output (kW) = 40.0
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.033333 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 40 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-11  Additional scenario 1  (Additional scenario S01) ---
+Scenario: A heat engine receives 100 kW from a hot source at 600 K, rejects heat at 300 K and produces 40 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 600.0
+    Cold reservoir / cold-side temperature (K) = 300.0
+    Heat supplied Q_H (kW) = 100.0
+    Claimed work or power output (kW) = 40.0
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.033333 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 40 % vs eta_Carnot = 50 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+
+--- M1-12  Additional scenario 2  (Additional scenario S02) ---
+Scenario: The engine absorbs 100 kilowatts of thermal energy per second from a 700 K furnace, rejects heat at 300 K and delivers 45 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot reservoir / hot-side temperature (K) = 700.0
+    Cold reservoir / cold-side temperature (K) = 300.0
+    Heat supplied Q_H (kW) = 100.0
+    Claimed work or power output (kW) = 45.0
+Verdict: FEASIBLE / NOT REJECTED
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.040476 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [PASS] Carnot limit: eta = 45 % vs eta_Carnot = 57.143 %  (criterion: Claimed work ≤ Q_H·eta_Carnot)
+

@@ -1,0 +1,235 @@
+Model 7 Mechanical energy harvesting
+====================================
+Full results for every case in Model_7_Mechanical_energy_harvesting.csv (same Case IDs).
+
+--- M7-01  Walking generator  (Website example E27) ---
+Example: 4 J per step at 120 steps/min; 5 W claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Energy per step (J) = 4
+    Steps per second (1/s) = 2
+    Claimed work or power output (kW) = 0.005
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.005 kW vs limit = 0.008 kW  (criterion: Output ≤ limit)
+
+--- M7-02  Walking — force × displacement  (Website example E28) ---
+Example: 700 N × 0.05 m × 2 steps/s = 70 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Force (N) = 700
+    Displacement per step (m) = 0.05
+    Steps per second (1/s) = 2
+    Claimed work or power output (kW) = 0.02
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.02 kW vs limit = 0.07 kW  (criterion: Output ≤ limit)
+
+--- M7-03  Pedalling generator  (Website example E29) ---
+Example: 20 N·m at 10 rad/s = 200 W; 120 W claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Torque (N m) = 20
+    Angular speed (rad/s) = 10
+    Claimed work or power output (kW) = 0.12
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.12 kW vs limit = 0.2 kW  (criterion: Output ≤ limit)
+
+--- M7-04  Wind turbine  (Website example E30) ---
+Example: 10 m², 8 m/s: Betz limit 1858 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Air density (kg/m3) = 1.225
+    Rotor swept area (m2) = 10
+    Wind speed (m/s) = 8
+    Claimed work or power output (kW) = 1.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 1.5 kW vs limit = 1.8584 kW  (criterion: Output ≤ limit)
+
+--- M7-05  Hydro turbine  (Website example E31) ---
+Example: 0.02 m³/s through 10 m: 1962 W ideal.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Head (m) = 10
+    Water flow (m3/s) = 0.02
+    Water density (kg/m3) = 1000
+    g (m/s2) = 9.81
+    Claimed work or power output (kW) = 1.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 1.5 kW vs limit = 1.962 kW  (criterion: Output ≤ limit)
+
+--- M7-06  No-input claim  (Website example E32) ---
+Example: 500 W with no energy input at all.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mechanical input power (kW) = 0
+    Claimed work or power output (kW) = 0.5
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.5) exceeds the modelled reversible upper limit (0).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Mechanical input limit: Output = 0.5 kW vs limit = 0 kW  (criterion: Output ≤ limit)
+
+--- M7-07  Large wind turbine (described in words)  (Website example E33) ---
+Scenario: A wind turbine with 40 m rotor diameter in 10 m/s wind claims 800 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Air density (kg/m3) = 1.225
+    Rotor swept area (m2) = 1256.64
+    Wind speed (m/s) = 10.0
+    Claimed work or power output (kW) = 800.0
+Verdict: NOT FEASIBLE
+    - Claimed useful work (800) exceeds the modelled reversible upper limit (456.113).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Mechanical input limit: Output = 800 kW vs limit = 456.11 kW  (criterion: Output ≤ limit)
+
+--- M7-08  Test case 8.1  (Test-case PDF 8.1) ---
+Scenario: Walking generator: average force 700 N, displacement 0.05 m per step, 2 steps/s. Electrical output 20 W. Calculate mechanical input and check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Force (N) = 700.0
+    Displacement per step (m) = 0.05
+    Steps per second (1/s) = 2.0
+    Claimed work or power output (kW) = 0.02
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.02 kW vs limit = 0.07 kW  (criterion: Output ≤ limit)
+
+--- M7-09  Test case 8.2  (Test-case PDF 8.2) ---
+Scenario: Same walking input: 700 N, 0.05 m/step, 2 steps/s. Generator claims 100 W electrical output.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Force (N) = 700.0
+    Displacement per step (m) = 0.05
+    Steps per second (1/s) = 2.0
+    Claimed work or power output (kW) = 0.1
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.1) exceeds the modelled reversible upper limit (0.07).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Mechanical input limit: Output = 0.1 kW vs limit = 0.07 kW  (criterion: Output ≤ limit)
+
+--- M7-10  Test case 8.3  (Test-case PDF 8.3) ---
+Scenario: A person supplies average mechanical power 80 W to a harvester. It produces 30 W electrical power. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mechanical input power (kW) = 0.08
+    Claimed work or power output (kW) = 0.03
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.03 kW vs limit = 0.08 kW  (criterion: Output ≤ limit)
+
+--- M7-11  Test case 8.4  (Test-case PDF 8.4) ---
+Scenario: Cyclist pedals with torque 20 Nm and angular velocity 10 rad/s. Generator produces 120 W. Calculate input and check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Torque (N m) = 20.0
+    Angular speed (rad/s) = 10.0
+    Claimed work or power output (kW) = 0.12
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.12 kW vs limit = 0.2 kW  (criterion: Output ≤ limit)
+
+--- M7-12  Test case 8.5  (Test-case PDF 8.5) ---
+Scenario: Wind turbine area 10 m², wind speed 8 m/s, air density 1.225 kg/m³. Output 1500 W. Check Betz limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Air density (kg/m3) = 1.225
+    Rotor swept area (m2) = 10.0
+    Wind speed (m/s) = 8.0
+    Claimed work or power output (kW) = 1.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 1.5 kW vs limit = 1.8584 kW  (criterion: Output ≤ limit)
+
+--- M7-13  Test case 8.6  (Test-case PDF 8.6) ---
+Scenario: Same wind turbine conditions, but claimed output is 2000 W. Check Betz limit.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Wind speed (m/s).; Rotor diameter, blade length or swept area.
+
+--- M7-14  Test case 8.7  (Test-case PDF 8.7) ---
+Scenario: Hydro turbine flow 0.02 m³/s, head 10 m, water density 1000 kg/m³, g = 9.81 m/s². Output 1500 W. Check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Head (m) = 10.0
+    Water mass flow (kg/s) = 20.0
+    g (m/s2) = 9.81
+    Claimed work or power output (kW) = 1.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 1.5 kW vs limit = 1.962 kW  (criterion: Output ≤ limit)
+
+--- M7-15  Test case 8.8  (Test-case PDF 8.8) ---
+Scenario: Same hydro conditions, but output is 2200 W. Check feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Head / height the water falls (m).; Water flow rate (m³/s, L/s or kg/s).
+
+--- M7-16  Test case 8.9  (Test-case PDF 8.9) ---
+Scenario: A device has no fuel, electrical, mechanical, heat, or other input but continuously produces 500 W electricity. Check.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mechanical input power (kW) = 0
+    Claimed work or power output (kW) = 0.5
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.5) exceeds the modelled reversible upper limit (0).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Mechanical input limit: Output = 0.5 kW vs limit = 0 kW  (criterion: Output ≤ limit)
+
+--- M7-17  Test case 8.10  (Test-case PDF 8.10) ---
+Scenario: Wind speed 10 m/s, air density 1.225 kg/m³, turbine output 500 W. Check Betz limit.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Rotor diameter, blade length or swept area.
+
+--- M7-18  Additional scenario 10  (Additional scenario S10) ---
+Scenario: A cyclist pedals with 25 N·m of torque at 60 rpm and the generator delivers 120 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Torque (N m) = 25.0
+    Angular speed (rad/s) = 6.28319
+    Claimed work or power output (kW) = 0.12
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 0.12 kW vs limit = 0.15708 kW  (criterion: Output ≤ limit)
+
+--- M7-19  Additional scenario 11  (Additional scenario S11) ---
+Scenario: A hydro plant with a 50 m head and 10 m3/s flow claims 5 MW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Head (m) = 50.0
+    Water mass flow (kg/s) = 10000.0
+    g (m/s2) = 9.81
+    Claimed work or power output (kW) = 5000.0
+Verdict: NOT FEASIBLE
+    - Claimed useful work (5000) exceeds the modelled reversible upper limit (4905).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Mechanical input limit: Output = 5000 kW vs limit = 4905 kW  (criterion: Output ≤ limit)
+
+--- M7-20  Additional scenario 17  (Additional scenario S17) ---
+Scenario: A small hydro turbine has 20 L/s of water falling 10 m and claims 1500 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Head (m) = 10.0
+    Water mass flow (kg/s) = 20.0
+    g (m/s2) = 9.81
+    Claimed work or power output (kW) = 1.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Mechanical input limit: Output = 1.5 kW vs limit = 1.962 kW  (criterion: Output ≤ limit)
+

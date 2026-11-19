@@ -1,0 +1,170 @@
+Model 8 Solar radiation conversion
+==================================
+Full results for every case in Model_8_Solar_radiation_conversion.csv (same Case IDs).
+
+--- M8-01  Normal solar panel  (Website example E34) ---
+Example: 500 W from 2 m² at 1000 W/m².
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778
+    Ambient temperature (K) = 300
+    Irradiance (W/m2) = 1000
+    Collection area (m2) = 2
+    Claimed work or power output (kW) = 0.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Petela–Landsberg radiation limit: Output = 0.5 kW vs limit = 1.8615 kW  (criterion: Output ≤ limit)
+
+--- M8-02  Output above the exergy limit  (Website example E35) ---
+Example: 1900 W claimed; limit ≈ 1862 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778
+    Ambient temperature (K) = 300
+    Irradiance (W/m2) = 1000
+    Collection area (m2) = 2
+    Claimed work or power output (kW) = 1.9
+Verdict: NOT FEASIBLE
+    - Claimed useful work (1.9) exceeds the modelled reversible upper limit (1.86155).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Petela–Landsberg radiation limit: Output = 1.9 kW vs limit = 1.8615 kW  (criterion: Output ≤ limit)
+
+--- M8-03  Different collector area  (Website example E36) ---
+Example: 5 m² at 800 W/m², 1 kW claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778
+    Ambient temperature (K) = 300
+    Irradiance (W/m2) = 800
+    Collection area (m2) = 5
+    Claimed work or power output (kW) = 1
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Petela–Landsberg radiation limit: Output = 1 kW vs limit = 3.7231 kW  (criterion: Output ≤ limit)
+
+--- M8-04  Zero irradiance  (Website example E37) ---
+Example: No sunlight but 100 W claimed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778
+    Ambient temperature (K) = 300
+    Irradiance (W/m2) = 0
+    Collection area (m2) = 2
+    Claimed work or power output (kW) = 0.1
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.1) exceeds the modelled reversible upper limit (0).
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Petela–Landsberg radiation limit: Output = 0.1 kW vs limit = 0 kW  (criterion: Output ≤ limit)
+
+--- M8-05  Test case 9.1  (Test-case PDF 9.1) ---
+Scenario: Solar irradiance 1000 W/m² over 2 m²; electrical output 500 W; source temperature 5778 K; ambient 300 K. Check Petela–Landsberg limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 300.0
+    Irradiance (W/m2) = 1000.0
+    Collection area (m2) = 2.0
+    Claimed work or power output (kW) = 0.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Petela–Landsberg radiation limit: Output = 0.5 kW vs limit = 1.8615 kW  (criterion: Output ≤ limit)
+
+--- M8-06  Test case 9.2  (Test-case PDF 9.2) ---
+Scenario: Solar irradiance 1000 W/m² over 2 m²; claimed output 2500 W; source 5778 K; ambient 300 K. Check limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 300.0
+    Irradiance (W/m2) = 1000.0
+    Collection area (m2) = 2.0
+    Claimed work or power output (kW) = 2.5
+Verdict: NOT FEASIBLE
+    - Claimed useful work (2.5) exceeds the modelled reversible upper limit (1.86155).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Petela–Landsberg radiation limit: Output = 2.5 kW vs limit = 1.8615 kW  (criterion: Output ≤ limit)
+
+--- M8-07  Test case 9.3  (Test-case PDF 9.3) ---
+Scenario: Solar irradiance 1000 W/m² over 2 m²; claimed useful work 1900 W; source 5778 K; ambient 300 K. Check Petela–Landsberg limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 300.0
+    Irradiance (W/m2) = 1000.0
+    Collection area (m2) = 2.0
+    Claimed work or power output (kW) = 1.9
+Verdict: NOT FEASIBLE
+    - Claimed useful work (1.9) exceeds the modelled reversible upper limit (1.86155).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Petela–Landsberg radiation limit: Output = 1.9 kW vs limit = 1.8615 kW  (criterion: Output ≤ limit)
+
+--- M8-08  Test case 9.4  (Test-case PDF 9.4) ---
+Scenario: Solar irradiance 800 W/m² over 5 m²; output 1000 W; source 5778 K; ambient 300 K. Check limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 300.0
+    Irradiance (W/m2) = 800.0
+    Collection area (m2) = 5.0
+    Claimed work or power output (kW) = 1.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Petela–Landsberg radiation limit: Output = 1 kW vs limit = 3.7231 kW  (criterion: Output ≤ limit)
+
+--- M8-09  Test case 9.5  (Test-case PDF 9.5) ---
+Scenario: Solar irradiance 1000 W/m² over 2 m²; output 500 W; source 5778 K; ambient 350 K. Check Petela–Landsberg limit.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 350.0
+    Irradiance (W/m2) = 1000.0
+    Collection area (m2) = 2.0
+    Claimed work or power output (kW) = 0.5
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Petela–Landsberg radiation limit: Output = 0.5 kW vs limit = 1.8385 kW  (criterion: Output ≤ limit)
+
+--- M8-10  Test case 9.6  (Test-case PDF 9.6) ---
+Scenario: Solar irradiance 1000 W/m²; output 500 W; source 5778 K; ambient 300 K. Check feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Collection area (m²).
+
+--- M8-11  Test case 9.7  (Test-case PDF 9.7) ---
+Scenario: Solar irradiance is zero over 2 m²; converter claims 100 W electrical output. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 300.0
+    Irradiance (W/m2) = 0
+    Collection area (m2) = 2.0
+    Claimed work or power output (kW) = 0.1
+Verdict: NOT FEASIBLE
+    - Claimed useful work (0.1) exceeds the modelled reversible upper limit (0).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [FAIL] Petela–Landsberg radiation limit: Output = 0.1 kW vs limit = 0 kW  (criterion: Output ≤ limit)
+
+--- M8-12  Additional scenario 12  (Additional scenario S12) ---
+Scenario: A PV panel of 1.6 m² under 800 W/m² of sunlight produces 350 W.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Radiation source temperature (K) = 5778.0
+    Ambient temperature (K) = 300.0
+    Irradiance (W/m2) = 800.0
+    Collection area (m2) = 1.6
+    Claimed work or power output (kW) = 0.35
+Verdict: FEASIBLE / NOT REJECTED
+    - Claimed work does not exceed the reversible limit used by this model.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT APPLICABLE] Entropy generation (Second Law): —  (criterion: S_gen ≥ 0)
+    [PASS] Petela–Landsberg radiation limit: Output = 0.35 kW vs limit = 1.1914 kW  (criterion: Output ≤ limit)
+

@@ -1,0 +1,82 @@
+Other cases property and out of scope
+=====================================
+Full results for every case in Other_cases_property_and_out_of_scope.csv (same Case IDs).
+
+--- X-01  Test case 5.1  (Test-case PDF 5.1) ---
+Scenario: Two kg liquid water are heated from 20°C to 80°C at constant pressure. Cp = 4.18 kJ/kg K. Calculate enthalpy change, entropy change, and effective temperature.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mass (kg) = 2.0
+    Initial temperature (K) = 293.15
+    Final temperature (K) = 353.15
+    Cp (kJ/kg K) = 4.18
+Verdict: PROPERTY CALCULATION ONLY
+    - This calculates state-property changes; it does not assess a complete device or establish S_gen.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+
+--- X-02  Test case 5.2  (Test-case PDF 5.2) ---
+Scenario: One kg water is cooled from 90°C to 30°C at constant pressure. Cp = 4.18 kJ/kg K. Calculate enthalpy and entropy changes.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mass (kg) = 1.0
+    Initial temperature (K) = 363.15
+    Final temperature (K) = 303.15
+    Cp (kJ/kg K) = 4.18
+Verdict: PROPERTY CALCULATION ONLY
+    - This calculates state-property changes; it does not assess a complete device or establish S_gen.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+
+--- X-03  Test case 5.3  (Test-case PDF 5.3) ---
+Scenario: Five kg water are heated from 25°C to 75°C. Cp = 4.18 kJ/kg K. Calculate total enthalpy and entropy changes.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mass (kg) = 5.0
+    Initial temperature (K) = 298.15
+    Final temperature (K) = 348.15
+    Cp (kJ/kg K) = 4.18
+Verdict: PROPERTY CALCULATION ONLY
+    - This calculates state-property changes; it does not assess a complete device or establish S_gen.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+
+--- X-04  Test case 5.4  (Test-case PDF 5.4) ---
+Scenario: One kg water vaporizes at 100°C. Latent heat = 2257 kJ/kg. Calculate enthalpy and entropy changes.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Mass (kg) = 1.0
+    Latent heat (kJ/kg) = 2257.0
+    Phase-change temperature (K) = 373.15
+Verdict: PROPERTY CALCULATION ONLY
+    - This calculates state-property changes; it does not assess a complete device or establish S_gen.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+
+--- X-05  Test case 5.5  (Test-case PDF 5.5) ---
+Scenario: Two kg of an unspecified substance are heated from 30°C to 100°C. Calculate enthalpy and entropy changes.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Heat capacity Cp of the material (kJ/kg K).
+
+--- X-06  Test case 5.6  (Test-case PDF 5.6) ---
+Scenario: One kg liquid water is heated from 30°C to −400°C. Assume Cp = 4.18 kJ/kg K. Calculate property changes.
+Verdict: INPUT ERROR
+Message: −400°C is at or below absolute zero (0 K = −273.15 °C); check the temperature and its unit.
+
+--- X-07  Test case 6.3  (Test-case PDF 6.3) ---
+Scenario: A tidal system uses periodic sea-level rise and fall to generate 500 kW electricity. Can current models analyse it?
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - A tidal/wave limit needs the tidal range, basin area and period; no validated tidal model is implemented. (A hydro case with a stated head and flow can use Model 7.)
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+
+--- X-08  Test case 6.4  (Test-case PDF 6.4) ---
+Scenario: A metal plate initially at 200°C is suddenly exposed to 25°C air. Its temperature changes with time. Analyse transient heat transfer.
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Transient heat transfer needs a time-dependent model (lumped capacitance or transient conduction with a heat-transfer coefficient), which is not implemented. The steady and cyclic models would give a misleading answer.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+
+--- X-09  Additional scenario 14  (Additional scenario S14) ---
+Scenario: A hot steel ball at 500 °C is dropped into oil at 30 °C. How long does it take to cool to 100 °C?
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Transient heat transfer needs a time-dependent model (lumped capacitance or transient conduction with a heat-transfer coefficient), which is not implemented. The steady and cyclic models would give a misleading answer.
+Balance and limit checks:
+    [NOT APPLICABLE] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+

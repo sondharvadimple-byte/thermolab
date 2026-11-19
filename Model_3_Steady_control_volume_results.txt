@@ -1,0 +1,229 @@
+Model 3 Steady control volume
+=============================
+Full results for every case in Model_3_Steady_control_volume.csv (same Case IDs).
+
+--- M3-01  Steam turbine  (Website example E09) ---
+Example: h and s from tables; S_gen = 0.6 kW/K.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 2
+    Inlet specific enthalpy (kJ/kg) = 3200
+    Inlet specific entropy (kJ/kg K) = 6.8
+    Outlet mass flow (kg/s) = 2
+    Outlet specific enthalpy (kJ/kg) = 2600
+    Outlet specific entropy (kJ/kg K) = 7.1
+    Claimed work or power output (kW) = 1200
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.6 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-02  Compressor  (Website example E10) ---
+Example: 80 kW consumed (W_out = −80 kW).
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 1
+    Inlet specific enthalpy (kJ/kg) = 300
+    Inlet specific entropy (kJ/kg K) = 6.5
+    Outlet mass flow (kg/s) = 1
+    Outlet specific enthalpy (kJ/kg) = 380
+    Outlet specific entropy (kJ/kg K) = 6.7
+    Claimed work or power output (kW) = -80
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.2 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-03  Energy imbalance  (Website example E11) ---
+Example: 1500 kW claimed from a 1200 kW enthalpy drop.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 2
+    Inlet specific enthalpy (kJ/kg) = 3200
+    Outlet mass flow (kg/s) = 2
+    Outlet specific enthalpy (kJ/kg) = 2600
+    Claimed work or power output (kW) = 1500
+Verdict: NOT FEASIBLE
+    - First Law consistency check failed: residual = -300 kW.
+    - Not evaluated: Second Law (specific entropy of every inlet and outlet).
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [FAIL] Energy balance (First Law): Residual = -300 kW  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-04  Missing outlet state  (Website example E12) ---
+Scenario: Steam enters a turbine at 2 kg/s with inlet enthalpy 3200 kJ/kg. The turbine produces 1000 kW work. Determine feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Outlet state: specific enthalpy h (kJ/kg), and s for the Second Law.
+
+--- M3-05  Test case 3.1  (Test-case PDF 3.1) ---
+Scenario: Steam enters an adiabatic turbine at 2 kg/s with h1 = 3200 kJ/kg and s1 = 6.8 kJ/kg K. It exits with h2 = 2600 kJ/kg and s2 = 7.1 kJ/kg K. Work output is 1200 kW. Check balances.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 2.0
+    Inlet specific enthalpy (kJ/kg) = 3200.0
+    Inlet specific entropy (kJ/kg K) = 6.8
+    Outlet mass flow (kg/s) = 2.0
+    Outlet specific enthalpy (kJ/kg) = 2600.0
+    Outlet specific entropy (kJ/kg K) = 7.1
+    Claimed work or power output (kW) = 1200.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.6 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-06  Test case 3.2  (Test-case PDF 3.2) ---
+Scenario: Steam enters an adiabatic turbine at 2 kg/s with h1 = 3200 kJ/kg and exits with h2 = 2600 kJ/kg. It claims 1500 kW work. Check energy balance.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 2.0
+    Inlet specific enthalpy (kJ/kg) = 3200.0
+    Outlet mass flow (kg/s) = 2.0
+    Outlet specific enthalpy (kJ/kg) = 2600.0
+    Claimed work or power output (kW) = 1500.0
+Verdict: NOT FEASIBLE
+    - First Law consistency check failed: residual = -300 kW.
+    - Not evaluated: Second Law (specific entropy of every inlet and outlet).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [FAIL] Energy balance (First Law): Residual = -300 kW  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-07  Test case 3.3  (Test-case PDF 3.3) ---
+Scenario: Steam enters at 2 kg/s, h1 = 3200 kJ/kg, s1 = 6.8 kJ/kg K; exits at h2 = 2600 kJ/kg, s2 = 7.1 kJ/kg K. It loses 100 kW heat to surroundings at 500 K and produces 1100 kW work. Check balances.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 2.0
+    Inlet specific enthalpy (kJ/kg) = 3200.0
+    Inlet specific entropy (kJ/kg K) = 6.8
+    Outlet mass flow (kg/s) = 2.0
+    Outlet specific enthalpy (kJ/kg) = 2600.0
+    Outlet specific entropy (kJ/kg K) = 7.1
+    Heat interaction 1 heat into device (kW) = -100.0
+    Heat interaction 1 boundary temperature (K) = 500.0
+    Claimed work or power output (kW) = 1100.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.8 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-08  Test case 3.4  (Test-case PDF 3.4) ---
+Scenario: Air enters an adiabatic compressor at 1 kg/s with h1 = 300 kJ/kg, s1 = 6.5 kJ/kg K; exits with h2 = 380 kJ/kg, s2 = 6.7 kJ/kg K. It consumes 80 kW work. Check balances.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 1.0
+    Inlet specific enthalpy (kJ/kg) = 300.0
+    Inlet specific entropy (kJ/kg K) = 6.5
+    Outlet mass flow (kg/s) = 1.0
+    Outlet specific enthalpy (kJ/kg) = 380.0
+    Outlet specific entropy (kJ/kg K) = 6.7
+    Claimed work or power output (kW) = -80.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.2 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-09  Test case 3.5  (Test-case PDF 3.5) ---
+Scenario: Steam enters a turbine at 2 kg/s with inlet enthalpy 3200 kJ/kg. The turbine produces 1000 kW work. Determine feasibility.
+Verdict: NEEDS MORE INFORMATION
+Missing information: Outlet state: specific enthalpy h (kJ/kg), and s for the Second Law.
+
+--- M3-10  Test case 3.6  (Test-case PDF 3.6) ---
+Scenario: A steady-flow device receives 2 kg/s water and discharges 1.5 kg/s. There is no accumulation. Check mass balance.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 2.0
+    Outlet mass flow (kg/s) = 1.5
+Verdict: NOT FEASIBLE
+    - Steady-state mass balance failed: residual = 0.5 kg/s.
+    - Not evaluated: First Law (specific enthalpy of every inlet and outlet), Second Law (specific entropy of every inlet and outlet).
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [FAIL] Mass balance: Residual = 0.5 kg/s  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-11  Additional scenario 3  (Additional scenario S03) ---
+Scenario: Steam enters a turbine at 3 kg/s with h = 3400 kJ/kg and s = 6.9 kJ/kg K and leaves with h = 2600 kJ/kg and s = 7.2 kJ/kg K. It produces 2400 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 3.0
+    Inlet specific enthalpy (kJ/kg) = 3400.0
+    Inlet specific entropy (kJ/kg K) = 6.9
+    Outlet mass flow (kg/s) = 3.0
+    Outlet specific enthalpy (kJ/kg) = 2600.0
+    Outlet specific entropy (kJ/kg K) = 7.2
+    Claimed work or power output (kW) = 2400.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.9 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-12  Additional scenario 4  (Additional scenario S04) ---
+Scenario: Air enters a compressor at 0.5 kg/s with h1 = 300 kJ/kg and leaves with h2 = 450 kJ/kg. The compressor requires 75 kW of work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 0.5
+    Inlet specific enthalpy (kJ/kg) = 300.0
+    Outlet mass flow (kg/s) = 0.5
+    Outlet specific enthalpy (kJ/kg) = 450.0
+    Claimed work or power output (kW) = -75.0
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Not evaluated: Second Law (specific entropy of every inlet and outlet).
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+
+--- M3-13  Additional scenario 5  (Additional scenario S05) ---
+Scenario: Water enters a pump at 10 kg/s with h1 = 100 kJ/kg, s1 = 0.35 kJ/kg K and leaves with h2 = 103 kJ/kg, s2 = 0.351 kJ/kg K. The pump consumes 30 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Inlet mass flow (kg/s) = 10.0
+    Inlet specific enthalpy (kJ/kg) = 100.0
+    Inlet specific entropy (kJ/kg K) = 0.35
+    Outlet mass flow (kg/s) = 10.0
+    Outlet specific enthalpy (kJ/kg) = 103.0
+    Outlet specific entropy (kJ/kg K) = 0.351
+    Claimed work or power output (kW) = -30.0
+Verdict: FEASIBLE / NOT REJECTED
+    - Every balance is complete and closes with S_gen >= 0, so the stated process is thermodynamically admissible.
+    - S_gen is positive: irreversible, but Second-Law admissible for the stated model.
+    - First Law balance is satisfied within numerical tolerance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Mass balance: Residual = 0 kg/s  (criterion: Residual ≈ 0)
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.01 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Reversible work limit: —  (criterion: The balances themselves decide feasibility)
+

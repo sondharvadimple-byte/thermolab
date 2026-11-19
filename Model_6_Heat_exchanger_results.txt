@@ -1,0 +1,304 @@
+Model 6 Heat exchanger
+======================
+Full results for every case in Model_6_Heat_exchanger.csv (same Case IDs).
+
+--- M6-01  Balanced water–water exchanger  (Website example E22) ---
+Example: 62.7 kW each side; S_gen > 0.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 0.5
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream outlet temperature (K) = 308.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: SECOND-LAW ADMISSIBLE / NOT REJECTED
+    - The insulated-exchanger energy balance closes within tolerance.
+    - Entropy generation is non-negative for the complete two-stream boundary.
+    - This establishes thermodynamic admissibility for the stated exchanger model, not practical, economic, or optimal performance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.028385 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+
+--- M6-02  Oil–water exchanger  (Website example E23) ---
+Example: Oil loses 200 kW, water gains 188.1 kW.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2
+    Hot stream inlet temperature (K) = 423.15
+    Hot stream outlet temperature (K) = 373.15
+    Hot stream Cp (kJ/kg K) = 2
+    Cold stream mass flow (kg/s) = 1.5
+    Cold stream inlet temperature (K) = 298.15
+    Cold stream outlet temperature (K) = 328.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: NOT FEASIBLE UNDER THE STATED INSULATED-EXCHANGER MODEL
+    - Energy mismatch is 11.9 kW. An external heat/work interaction or corrected stream data is required.
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): Residual = 11.9 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.098146 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+
+--- M6-03  Temperature cross  (Website example E24) ---
+Example: Cold water leaves at 95 °C, above the 90 °C hot inlet.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 313.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 0.666667
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream outlet temperature (K) = 368.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: NOT FEASIBLE — TEMPERATURE CROSS
+    - Temperature cross: cold outlet is hotter than the hot inlet. Heat cannot flow from a colder to a hotter fluid in any exchanger arrangement, even though the overall S_gen is non-negative.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.015621 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [FAIL] Temperature cross: cold outlet is hotter than the hot inlet  (criterion: Heat flows from hot to cold only)
+
+--- M6-04  Energy imbalance  (Website example E25) ---
+Example: 167.2 kW released but only 83.6 kW absorbed.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 323.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream outlet temperature (K) = 313.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: NOT FEASIBLE UNDER THE STATED INSULATED-EXCHANGER MODEL
+    - Energy mismatch is 83.6 kW. An external heat/work interaction or corrected stream data is required.
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): Residual = 83.6 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -0.21193 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+
+--- M6-05  Missing outlet temperature  (Website example E26) ---
+Example: The cold outlet is calculated from the energy balance.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 0.5
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+Verdict: SECOND-LAW ADMISSIBLE / NOT REJECTED
+    - The cold stream outlet was not given; the energy balance fixes it at 308.15 K (35 °C), so the First Law closes by construction.
+    - The insulated-exchanger energy balance closes within tolerance.
+    - Entropy generation is non-negative for the complete two-stream boundary.
+    - This establishes thermodynamic admissibility for the stated exchanger model, not practical, economic, or optimal performance.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.028385 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+
+--- M6-06  Test case 7.1  (Test-case PDF 7.1) ---
+Scenario: Counterflow exchanger: hot water 0.5 kg/s cools 90°C to 60°C; cold water 1 kg/s heats 20°C to 35°C. Cp = 4.18 kJ/kg K. No shaft work. Check balances.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 0.5
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 333.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream outlet temperature (K) = 308.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: SECOND-LAW ADMISSIBLE / NOT REJECTED
+    - The insulated-exchanger energy balance closes within tolerance.
+    - Entropy generation is non-negative for the complete two-stream boundary.
+    - This establishes thermodynamic admissibility for the stated exchanger model, not practical, economic, or optimal performance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.028385 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+    [PASS] Exergy destroyed: 8.463 kW  (criterion: ≥ 0)
+
+--- M6-07  Test case 7.2  (Test-case PDF 7.2) ---
+Scenario: Hot water 1 kg/s cools 90°C to 50°C. Cold water 1 kg/s heats 20°C to 40°C. Cp = 4.18 kJ/kg K. No shaft work. Check balance.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1.0
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 323.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream outlet temperature (K) = 313.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: NOT FEASIBLE UNDER THE STATED INSULATED-EXCHANGER MODEL
+    - Energy mismatch is 83.6 kW. An external heat/work interaction or corrected stream data is required.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): Residual = 83.6 kW  (criterion: Residual ≈ 0)
+    [FAIL] Entropy generation (Second Law): S_gen = -0.21193 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+    [PASS] Exergy destroyed: -63.188 kW  (criterion: ≥ 0)
+
+--- M6-08  Test case 7.3  (Test-case PDF 7.3) ---
+Scenario: Hot water enters at 90°C and exits at 40°C; cold water enters at 20°C and exits at 95°C. Steady exchanger, no external heat or shaft work. Check feasibility.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream outlet temperature (K) = 313.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream outlet temperature (K) = 368.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: NOT FEASIBLE — TEMPERATURE CROSS
+    - Temperature cross: cold outlet is hotter than the hot inlet. Heat cannot flow from a colder to a hotter fluid, whatever the flow rates.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT EVALUATED] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [FAIL] Temperature cross: cold outlet is hotter than the hot inlet  (criterion: Heat flows from hot to cold only)
+
+--- M6-09  Test case 7.4  (Test-case PDF 7.4) ---
+Scenario: An exchanger transfers 50 kW from hot stream to cold stream; hot loses 50 kW and cold gains 50 kW. No shaft work. Check balances.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot-side duty (kW) = 50.0
+    Cold-side duty (kW) = 50.0
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - The energy balance closes with W_shaft = 0.
+    - Entropy generation needs each stream's flow, inlet/outlet temperatures and Cp.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+
+--- M6-10  Test case 7.5  (Test-case PDF 7.5) ---
+Scenario: Oil 2 kg/s cools 150°C to 100°C, Cp = 2.0 kJ/kg K. Water 1.5 kg/s heats 25°C to 55°C, Cp = 4.18 kJ/kg K. No shaft work. Check closure.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2.0
+    Hot stream inlet temperature (K) = 423.15
+    Hot stream outlet temperature (K) = 373.15
+    Hot stream Cp (kJ/kg K) = 2.0
+    Cold stream mass flow (kg/s) = 1.5
+    Cold stream inlet temperature (K) = 298.15
+    Cold stream outlet temperature (K) = 328.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: NOT FEASIBLE UNDER THE STATED INSULATED-EXCHANGER MODEL
+    - Energy mismatch is 11.9 kW. An external heat/work interaction or corrected stream data is required.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [FAIL] Energy balance (First Law): Residual = 11.9 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.098146 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+    [PASS] Exergy destroyed: 29.262 kW  (criterion: ≥ 0)
+
+--- M6-11  Test case 7.6  (Test-case PDF 7.6) ---
+Scenario: Hot water enters at 90°C and 1 kg/s; cold water enters at 20°C and 1 kg/s. No shaft work. Determine both outlet temperatures.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 1.0
+    Hot stream inlet temperature (K) = 363.15
+    Hot stream Cp (kJ/kg K) = 4.18
+    Cold stream mass flow (kg/s) = 1.0
+    Cold stream inlet temperature (K) = 293.15
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: INSUFFICIENT DATA / MODEL REQUIRED
+    - Missing: hot stream outlet temperature; cold stream outlet temperature.
+    - With both outlets unknown, add the heat duty, one outlet temperature or the exchanger effectiveness.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [NOT EVALUATED] Energy balance (First Law): —  (criterion: Residual ≈ 0)
+    [NOT EVALUATED] Entropy generation (Second Law): S_gen = —  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+
+--- M6-12  Additional scenario 9  (Additional scenario S09) ---
+Scenario: A heat exchanger cools hot oil (2 kg/s, Cp 2.2 kJ/kg K) from 450 K to 350 K. Cold water at 1.2 kg/s with Cp 4.18 kJ/kg K enters at 300 K. No shaft work.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2.0
+    Hot stream inlet temperature (K) = 450.0
+    Hot stream outlet temperature (K) = 350.0
+    Hot stream Cp (kJ/kg K) = 2.2
+    Cold stream mass flow (kg/s) = 1.2
+    Cold stream inlet temperature (K) = 300.0
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: SECOND-LAW ADMISSIBLE / NOT REJECTED
+    - The cold stream outlet was not given; the energy balance fixes it at 387.72 K (114.6 °C), so the First Law closes by construction.
+    - The insulated-exchanger energy balance closes within tolerance.
+    - Entropy generation is non-negative for the complete two-stream boundary.
+    - This establishes thermodynamic admissibility for the stated exchanger model, not practical, economic, or optimal performance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.18082 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+    [PASS] Exergy destroyed: 53.91 kW  (criterion: ≥ 0)
+
+--- M6-13  Additional scenario 19  (Additional scenario S19) ---
+Scenario: A heat exchanger cools hot oil (2 kg/s, Cp 2.2 kJ/kg K) from 450 K to 350 K. Cold water at 1.2 kg/s with Cp 4.18 kJ/kg K enters at 300 K. No shaft work. Surroundings are at 25 °C.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2.0
+    Hot stream inlet temperature (K) = 450.0
+    Hot stream outlet temperature (K) = 350.0
+    Hot stream Cp (kJ/kg K) = 2.2
+    Cold stream mass flow (kg/s) = 1.2
+    Cold stream inlet temperature (K) = 300.0
+    Cold stream Cp (kJ/kg K) = 4.18
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: SECOND-LAW ADMISSIBLE / NOT REJECTED
+    - The cold stream outlet was not given; the energy balance fixes it at 387.72 K (114.6 °C), so the First Law closes by construction.
+    - The insulated-exchanger energy balance closes within tolerance.
+    - Entropy generation is non-negative for the complete two-stream boundary.
+    - This establishes thermodynamic admissibility for the stated exchanger model, not practical, economic, or optimal performance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.18082 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+    [PASS] Exergy destroyed: 53.91 kW  (criterion: ≥ 0)
+
+--- M6-14  Additional scenario 20  (Additional scenario S20) ---
+Scenario: An industrial heat exchanger is used to cool hot oil from 450 K to 350 K while heating cold water from 300 K to 380 K. The oil flows at 2 kg/s with cp 2.2 kJ/kg K and the water flows at 1.2 kg/s with cp 4.5833 kJ/kg K. All heat released by the hot oil is absorbed by the cold water.
+Inputs given to the engine (SI units: K, kW, kJ, kg/s):
+    Hot stream mass flow (kg/s) = 2.0
+    Hot stream inlet temperature (K) = 450.0
+    Hot stream outlet temperature (K) = 350.0
+    Hot stream Cp (kJ/kg K) = 2.2
+    Cold stream mass flow (kg/s) = 1.2
+    Cold stream inlet temperature (K) = 300.0
+    Cold stream outlet temperature (K) = 380.0
+    Cold stream Cp (kJ/kg K) = 4.5833
+    Environment temperature T0 (K) = 298.15
+    Flow arrangement = counterflow
+Verdict: SECOND-LAW ADMISSIBLE / NOT REJECTED
+    - Energy mismatch 0.0032 kW (0.0007273 % of the duty) is within the 0.1 % allowance for rounded input data.
+    - The insulated-exchanger energy balance closes within tolerance.
+    - Entropy generation is non-negative for the complete two-stream boundary.
+    - This establishes thermodynamic admissibility for the stated exchanger model, not practical, economic, or optimal performance.
+    - This verdict uses the labelled assumptions listed under 'How the scenario was interpreted'.
+Balance and limit checks:
+    [PASS] Energy balance (First Law): Residual = 0.0032 kW  (criterion: Residual ≈ 0)
+    [PASS] Entropy generation (Second Law): S_gen = 0.19435 kW/K  (criterion: S_gen ≥ 0 (= 0 only for a reversible process))
+    [NOT APPLICABLE] Shaft work: W = 0 kW  (criterion: No work produced or consumed)
+    [PASS] Temperature cross: PASS  (criterion: Heat flows from hot to cold only)
+    [PASS] Exergy destroyed: 57.944 kW  (criterion: ≥ 0)
+
